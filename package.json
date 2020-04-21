@@ -1,0 +1,14 @@
+{
+  "name": "stock-up",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/barryhe2000/Stock-Up.git",
+  "author": "Barry <bh375@cornell.edu>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "firebase": "^7.14.1",
+    "firebase-admin": "^8.10.0"
+  }
+}
