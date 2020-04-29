@@ -38,12 +38,12 @@ img {
 
 }
 
-#custom-button:hover {
+#custom-home-button:hover {
   background-color: #201D5F;
   color: #fff;
 }
 
-#custom-button {
+#custom-home-button {
   color: #201D5F;
 }
 
@@ -59,4 +59,29 @@ h1.logo {
 
 .home {
   height: 100%;
+}
+
+/* Transaction Component */
+
+#transaction-submit {
+  background-color: #201D5F;
+  color: #fff;
+  width: 200px;
+  position: relative;
+  left: 25px;
+
+
+}
+
+#transaction-submit:hover {
+  background-color: #646CB3;
+}
+
+.transaction-form-label {
+  color: #201D5F;;
+}
+
+.transaction-form {
+  width: 250px;
+  margin: 0 auto;
 }
