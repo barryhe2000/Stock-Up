@@ -69,8 +69,6 @@ h1.logo {
   width: 200px;
   position: relative;
   left: 25px;
-
-
 }
 
 #transaction-submit:hover {
@@ -84,4 +82,24 @@ h1.logo {
 .transaction-form {
   width: 250px;
   margin: 0 auto;
+}
+
+/* AddFunds Component */
+
+#add-funds-submit {
+  background-color: #201D5F;
+  color: #fff;
+  width: 200px;
+  position: relative;
+  left: 25px;
+}
+
+#add-funds-submit:hover {
+  background-color: #646CB3;
+}
+
+.add-funds-form {
+  width: 250px;
+  margin: 0 auto;
+
 }
