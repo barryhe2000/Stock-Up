@@ -9,10 +9,6 @@ export default ({callback}) => {
     const [quantity, setQuantity] = useState(0);
     const [buy, setBuy] = useState('');
 
-    console.log(buy);
-    console.log(stock);
-    console.log(quantity);
-
     return (
         <div>
             
@@ -23,7 +19,7 @@ export default ({callback}) => {
                     onChange={(e) => setStock(e.target.value)}
                     />
                 </Form.Group>
-                
+
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label className="transaction-form-label">Quantity</Form.Label>
                     <Form.Control type="text" placeholder="e.g. 1, 3, 8" 
