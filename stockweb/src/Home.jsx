@@ -13,10 +13,10 @@ export default () => {
                 Manage your stocks, make new investments, and get real-time data all in one place.
             </p>
             <p>
-                <Button id="custom-button" variant="outline-dark" href="/Home">Learn more</Button>
+                <Button id="custom-home-button" variant="outline-dark" href="/Home">Learn more</Button>
             </p>
             </Jumbotron>
-            <img src={require('./gradient.png')} alt="hi"></img>
+            <img src={require('./images/gradient.png')} alt="hi"></img>
         </div>
     )
 }
