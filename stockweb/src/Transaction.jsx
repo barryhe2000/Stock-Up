@@ -11,7 +11,6 @@ export default ({callback}) => {
 
     return (
         <div>
-            
             <Form className="transaction-form">
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label className="transaction-form-label">Stock Name</Form.Label>
@@ -36,7 +35,6 @@ export default ({callback}) => {
                 </Form.Group>
 
                 <Button id="transaction-submit" variant="white" type="submit"
-                
                 >
                     Make Transaction
                 </Button>
