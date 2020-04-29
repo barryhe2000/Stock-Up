@@ -1,38 +1,62 @@
+/* Home page */
+.form {
+  width: 300px;
+}
+
+#jumbotron {
+  margin: 80px 30px;
+  width: 500px;
+  display: inline-block;
+  background-color: white;
+  letter-spacing: 1px;
+}
+
+#jumbotron h1 {
+  font-weight: 800;
+  font-size: 67px;
+  margin-bottom: 15px;
+  color: #201D5F;
+}
+
+#jumbotron p {
+  font-size: 20px;
+  margin-bottom: 50px;
+  color: #201D5F;
+}
+
+
 .App {
-  text-align: center;
+  margin: 0 auto;
+  width: 1300px;
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+img {
+  width: 700px;
+  height: 630px;
+  margin-top: -250px;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#custom-button:hover {
+  background-color: #201D5F;
+  color: #fff;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#custom-button {
+  color: #201D5F;
 }
 
-.App-link {
-  color: #61dafb;
+h1.logo {
+  font-size: 30px;
+  color: #201D5F;
+  font-weight: 800;
+  margin-left: 60px;
+  top: 60px;
+  position: relative;
+  width: 200px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.home {
+  height: 100%;
 }
