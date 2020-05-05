@@ -1,5 +1,5 @@
 # Stock-Up
-Micro-investing app simulating investment portfolios
+Financial Budgetting App for Tracking Personal Finances.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
