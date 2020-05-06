@@ -9,26 +9,33 @@ export default ({callback}) => {
     return (
         <div className="new-budget">
             <p className="new-budget-title">Create New Budget</p>
-            <Form className="add-funds-form">
+
+            {/* form */}
+            <Form className="budget-form">
             <Form.Group id="amount-input" controlId="formBasicEmail">
                 <Form.Label className="amount-label">Amount</Form.Label>
                 <InputGroup >
+
+                    {/* prepend $ symbol */}
                     <InputGroup.Prepend>
                         <InputGroup.Text id="inputGroupPrepend">$</InputGroup.Text>
                     </InputGroup.Prepend>
-                    <Form.Control type="number" placeholder="e.g. 100.00" 
+                    <Form.Control type="text" placeholder="e.g. 100.00" 
                     onChange={(e) => setAmount(e.target.value)} 
                     aria-describedby="inputGroupPrepend"
                     required 
                     id="amount-input" />
+
+                    {/* feedback */}
                     <Form.Control.Feedback type="invalid">
                     Please choose a username.
                     </Form.Control.Feedback>
                 </InputGroup>
             </Form.Group>
 
-            <Button id="add-funds-submit" variant="white" type="submit"
-            >
+            {/* submit button */}
+            <Button id="add-funds-submit" variant="white" 
+            type="submit">
                 Create Budget
             </Button>
         </Form>
