@@ -31,7 +31,7 @@
   height: 100%;
 }
 
-img {
+.home-img {
   width: 700px;
   height: 630px;
   margin-top: -250px;
@@ -108,7 +108,7 @@ h1.logo {
 
 .action-options {
   position: relative;
-  top: 350px;
+  top: 100px;
 }
 
 .option-make-transaction {
@@ -193,4 +193,43 @@ h1.logo {
 .action-title, .action-subtitle {
   color: #201D5F;
   letter-spacing: 1px;
+}
+
+/* Authentication button */
+#firebaseui_container {
+  position: relative;
+  right: 108px;
+}
+
+/* Nav bar */
+.custom-navbar {
+  background-color: #201D5F;
+  color: #fff;
+  width: 220px;
+  height: 100vh;
+}
+
+.navlink {
+  color: rgb(209, 208, 208);
+  position: relative;
+  left: 15px;
+  margin: 10px 0 10px 0;
+}
+
+.single-link {
+  position: relative;
+  top: 50px;
+}
+.single-link:hover {
+  background-color: rgb(80, 89, 170);
+}
+
+.single-link:hover .navlink {
+  color: #fff;
+}
+
+.nav-logo {
+  position: relative;
+  left: 30px;
+  top: 20px;
 }
