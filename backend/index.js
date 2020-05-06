@@ -36,8 +36,11 @@ app.post('/maketransaction/', async (req, res, next) => {
   const category = req.query.category;
   const info = req.body;
   const username = info.username;
-  const prev = await usersTable.get(username);
-  const balance = prev.balance + info.amount;
+  const prev = await usersTable.where('username', '==', username).get();
+  let b = info.amount;
+  for (let doc of prev.docs) {
+    b += doc.data().balance;
+  }
   let tbl = null;
   if (category === "bills") {
     tbl = billsTable.doc();
@@ -54,45 +57,51 @@ app.post('/maketransaction/', async (req, res, next) => {
   } else { //transport
     tbl = transportTable.doc();
   }
-  await usersTable.doc(username).update({ balance });
+  await usersTable.doc(username).update({ balance: b });
   tbl.set(info);
   res.status(201).send(tbl.id);
 })
 
 //right after logging in, this post request creates 
 //user, and if user is already created nothing happens
-app.post('/action/', async (req, res, next) => {
-  const username = req.body.username;
-  const accounts = await usersTable.get();
-  for (let doc of accounts.docs) {
-    if (username === doc.data().username) {
-      res.send("Welcome back!");
-    }
+app.post('/action/:username', async (req, res, next) => {
+  const username = req.params.username;
+  const accounts = await usersTable.where('username', '==', username).get();
+  if (!accounts.empty) res.send("Welcome back!");
+  else {
+    const tbl = usersTable.doc(username);
+    tbl.set({ username: username, balance: 0, limit: 0 });
+    res.status(201).send(tbl.id);
   }
-  const tbl = usersTable.doc(username);
-  tbl.set({ username: username, balance: 0, limit: 0 });
-  res.status(201).send(tbl.id);
 })
 
 //user updates limit
-app.post('/updatelimit/', async (req, res, next) => {
-  const username = req.body.username;
+app.post('/updatelimit/:username', async (req, res, next) => {
+  const username = req.params.username;
   const limit = req.body.limit;
   await usersTable.doc(username).update({ limit });
-  res.send("New limit updated");
+  res.status(201).send("New limit updated");
 })
 
 //url: /whatever/myusername
 app.get('/getbalance/:username', async (req, res, next) => {
   const username = req.params.username;
-  const prev = await usersTable.get(username);
-  res.status(200).json({ balance: prev.balance });
+  const prev = await usersTable.where('username', '==', username).get();
+  let b = null;
+  for (let doc of prev.docs) {
+    b = doc.data().balance;
+  }
+  res.status(200).json({ balance: b });
 })
 
 app.get('/getlimit/:username', async (req, res, next) => {
   const username = req.params.username;
-  const prev = await usersTable.get(username);
-  res.status(200).json({ limit: prev.limit });
+  const prev = await usersTable.where('username', '==', username).get();
+  let l = null;
+  for (let doc of prev.docs) {
+    l = doc.data().limit;
+  }
+  res.status(200).json({ limit: l });
 })
 
 app.get('/getallactions/:username', async (req, res, next) => {
