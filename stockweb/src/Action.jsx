@@ -25,7 +25,7 @@ export default () => {
 
                 <div className="option-add-funds">
                     <img className="add-funds-img" src={require('./images/104.png')} alt="Man Adding Funds"/>
-                    <Button id="option-funds-button" variant="outline-dark" href="/Home">Manage Budget</Button>
+                    <Button id="option-funds-button" variant="outline-dark" href="/managebudget">Manage Budget</Button>
                 </div>
             
 
