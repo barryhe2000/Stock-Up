@@ -266,8 +266,10 @@ h1.logo {
   font-weight: 800;
   font-size: 40px;
   color: #201D5F;
-  margin-left: 50px;
   letter-spacing: 1px;
+  position: absolute;
+  left: 275px;
+  top: 30px;
 }
 
 .nav-component, .manage-budget, .create-budget, .budget-img {
@@ -277,7 +279,7 @@ h1.logo {
 .current-budget {
   position: absolute;
   top: 120px;
-  left: 275px;
+  left: 280px;
   color: #201D5F;
   font-size: 24px;
   font-weight: 400;
@@ -323,7 +325,7 @@ h1.logo {
 .budget-img {
   position: absolute;
   top: 365px;
-  left: 140px;
+  left: 160px;
 }
 
 .budget-bottom-img {
@@ -333,6 +335,7 @@ h1.logo {
 
 .nav-component {
  
-  position: relative;
+  position: absolute;
   left: 15px;
+
 }
