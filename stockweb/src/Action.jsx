@@ -13,19 +13,19 @@ export default () => {
                 
             </div>
             <div className="action-options">
-                <div className="option-make-transaction">
-                    <img className="action-transaction-img" src={require('./images/134.png')} alt="Girl Holding Bags"/>
-                    <Button id="option-transaction-button" variant="outline-dark" href="/Home">Input Expense</Button>
+                <div className="option-input-expense">
+                    <img className="action-input-img" src={require('./images/134.png')} alt="Girl Holding Bags"/>
+                    <Button id="option-input-button" variant="outline-dark" href="/Home">Input Expense</Button>
                 </div>
 
-                <div className="option-overview">
-                    <img className="overview-img" src={require('./images/075.png')} alt="Man Checking Screen"/>
-                    <Button id="option-overview-button" variant="outline-dark" href="/Home">Track Spending</Button>
+                <div className="option-track-spending">
+                    <img className="action-track-img" src={require('./images/075.png')} alt="Man Checking Screen"/>
+                    <Button id="option-track-button" variant="outline-dark" href="/Home">Track Spending</Button>
                 </div>
 
-                <div className="option-add-funds">
-                    <img className="add-funds-img" src={require('./images/104.png')} alt="Man Adding Funds"/>
-                    <Button id="option-funds-button" variant="outline-dark" href="/managebudget">Manage Budget</Button>
+                <div className="option-manage-budget">
+                    <img className="action-budget-img" src={require('./images/104.png')} alt="Man Adding Funds"/>
+                    <Button id="option-budget-button" variant="outline-dark" href="/managebudget">Manage Budget</Button>
                 </div>
             
 
