@@ -224,10 +224,7 @@ h1.logo {
   position: relative;
   top: 50px;
 }
-.single-link:hover {
-  background-color: rgb(80, 89, 170);
-  transition: all 0.3s ease;
-}
+
 
 .single-link:active {
   background-color: rgb(80, 89, 170);
@@ -235,6 +232,7 @@ h1.logo {
 
 .single-link:hover .navlink {
   color: #fff;
+  transition: all 0.3s ease;
 }
 
 .nav-logo {
