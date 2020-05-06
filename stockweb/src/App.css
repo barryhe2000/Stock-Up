@@ -107,64 +107,65 @@ h1.logo {
 /* Action Component */
 
 .action-options {
-  position: relative;
-  top: 100px;
+  position: absolute;
+  top: 250px;
+  left: 60px;
 }
 
-.option-make-transaction {
+.option-input-expense {
   width: 400px;
-  position: relative;
+  position: absolute;
   left: 20px;
 }
 
-.action-transaction-img {
+.action-input-img {
   width: 330px;
   height: 300px;
 
 }
 
-#option-transaction-button, #option-overview-button, #option-funds-button {
+#option-input-button, #option-track-button, #option-budget-button {
   display: block;
   width: 200px;
   border-radius: 20px;
   margin: 35px auto 0 auto;
 }
 
-#option-transaction-button:hover, #option-overview-button:hover, #option-funds-button:hover {
+#option-input-button:hover, #option-track-button:hover, #option-budget-button:hover {
   background-color: #646CB3;
   color: #fff;
 
 }
 
-.option-overview {
+.option-track-spending {
   width: 400px;
-  position: relative;
-  left: 60px;
+  position: absolute;
+  left: 450px;
 }
 
 #option-overview-button {
   width: 170px;
 }
 
-.option-make-transaction, .option-overview, .option-add-funds {
+.option-input-expense, .option-track-spending, .option-manage-budget {
   display: inline-block;
 }
 
-.overview-img {
+.action-track-img {
   height: 300px;
   width: 260px;
   position: relative;
   left: 100px;
 }
 
-.option-add-funds{
+.option-manage-budget{
   width: 400px;
-  position: relative;
-  left: 80px;
+  position: absolute;
+  left: 900px;
 
 }
 
-.add-funds-img {
+.action-budget-img {
   height: 300px;
   width: 340px;
   position: relative;
@@ -176,9 +177,9 @@ h1.logo {
 }
 
 .action-header {
-  position: relative;
-  top: 30px;
-  left: 20px;
+  position: absolute;
+  top: 40px;
+  left: 75px;
 }
 
 .action-title {
