@@ -22,6 +22,16 @@ const shoppingTable = db.collection("Shopping");
 const transportTable = db.collection("Transport");
 const usersTable = db.collection("Users");
 
+//returns array of documents (doc.data() returns json)
+const getActionsHelper = (username, arr, lst) => {
+  for (let doc of lst.docs) {
+    let item = doc.data();
+    if (username === item.username) arr.push(doc);
+  }
+  return arr;
+};
+
+//user inputs a new budget transaction
 app.post('/maketransaction/', async (req, res, next) => {
   const category = req.query.category;
   const info = req.body;
@@ -49,14 +59,14 @@ app.post('/maketransaction/', async (req, res, next) => {
   res.status(201).send(tbl.id);
 })
 
+//right after logging in, this post request creates 
+//user, and if user is already created nothing happens
 app.post('/action/', async (req, res, next) => {
-  //check if username already exists, if so then bye bye
   const username = req.body.username;
   const accounts = await usersTable.get();
   for (let doc of accounts.docs) {
     if (username === doc.data().username) {
-      console.log("done");
-      res.send("no need to update"); //update message later
+      res.send("Welcome back!");
     }
   }
   const tbl = usersTable.doc(username);
@@ -64,267 +74,103 @@ app.post('/action/', async (req, res, next) => {
   res.status(201).send(tbl.id);
 })
 
+//user updates limit
+app.post('/updatelimit/', async (req, res, next) => {
+  const username = req.body.username;
+  const limit = req.body.limit;
+  await usersTable.doc(username).update({ limit });
+  res.send("New limit updated");
+})
 
+//url: /whatever/myusername
+app.get('/getbalance/:username', async (req, res, next) => {
+  const username = req.params.username;
+  const prev = await usersTable.get(username);
+  res.status(200).json({ balance: prev.balance });
+})
 
+app.get('/getlimit/:username', async (req, res, next) => {
+  const username = req.params.username;
+  const prev = await usersTable.get(username);
+  res.status(200).json({ limit: prev.limit });
+})
 
+app.get('/getallactions/:username', async (req, res, next) => {
+  const username = req.params.username;
+  const bills = await billsTable.orderBy('username').get();
+  const enter = await entertainmentTable.orderBy('username').get();
+  const foods = await foodTable.orderBy('username').get();
+  const homes = await homeTable.orderBy('username').get();
+  const others = await otherTable.orderBy('username').get();
+  const shopping = await shoppingTable.orderBy('username').get();
+  const transport = await transportTable.orderBy('username').get();
+  let arr = [bills, enter, foods, homes, others, shopping, transport];
+  arr = arr.map((tbl) => getActionsHelper(username, [], tbl));
+  const ret = [];
+  //arr is 2d array holding docs, which is an arr of documents
+  //doc.data() gives json
+  for (let docs of arr) {
+    for (let doc of docs) {
+      ret.push(doc.data());
+    }
+  }
+  res.status(200).json(ret);
+})
 
+app.get('/getbillsactions/:username', async (req, res, next) => {
+  const username = req.params.username;
+  const arr = [];
+  const bills = await billsTable.orderBy('username').get();
+  res.status(200).json(getActionsHelper(username, arr, bills).map(
+    (item) => ({ ...item.data() })));
+})
 
+app.get('/getentertainmentactions/:username', async (req, res, next) => {
+  const username = req.params.username;
+  const arr = [];
+  const enter = await entertainmentTable.orderBy('username').get();
+  res.status(200).json(getActionsHelper(username, arr, enter).map(
+    (item) => ({ ...item.data() })));
+})
 
-// //must be req.query.Username (take care frontend)
-// //return balance 
-// app.get('/maketransaction/', async (req, res, next) => {
-//   const user = await userTable.get(req.query.Username);
-//   res.json({ Balance: user.Balance });
-// })
+app.get('/getfoodactions/:username', async (req, res, next) => {
+  const username = req.params.username;
+  const arr = [];
+  const foods = await foodTable.orderBy('username').get();
+  res.status(200).json(getActionsHelper(username, arr, foods).map(
+    (item) => ({ ...item.data() })));
+})
 
+app.get('/gethomeactions/:username', async (req, res, next) => {
+  const username = req.params.username;
+  const arr = [];
+  const homes = await homeTable.orderBy('username').get();
+  res.status(200).json(getActionsHelper(username, arr, homes).map(
+    (item) => ({ ...item.data() })));
+})
 
-// //assuming JSON has fields of stock and quantity
-// //username has to be saved and passed down
-// //FILL IN THE STOCK PRICE
-// //in the fron end - add the balance from the get req and pass in
-// const stockPrice = 0;
-// app.post('/maketransaction/', async (req, res, next) => {
-//   const txnInfo = req.body;
-//   const amnt = txnInfo.Quantity * stockPrice;
-//   let Balance = txnInfo.Balance - amnt;
-//   if (txnInfo.Bought) {
-//     if (Balance < 0) {
-//       res.status(404).send("Not enough money!");
-//       return;
-//     }
-//   } else {
-//     //assume you can't sell a stock you don't own 
-//     //will fix later if needed
-//     Balance += amnt + amnt;
-//   }
-//   await userTable.doc(txnInfo.Username).update({ Balance });
-//   txn = serializeTransactions(usr, txnInfo.Buy, txnInfo.Quantity, txnInfo.Stock);
-//   transactionTable.doc().set(txn);
-//   updateExistingStock(txnInfo.Stock, usr, txnInfo.Quantity, txnInfo.Buy);
-//   res.status(201).send(txnInfo.Stock);
-// })
+app.get('/getotheractions/:username', async (req, res, next) => {
+  const username = req.params.username;
+  const arr = [];
+  const others = await otherTable.orderBy('username').get();
+  res.status(200).json(getActionsHelper(username, arr, others).map(
+    (item) => ({ ...item.data() })));
+})
 
+app.get('/getshoppingactions/:username', async (req, res, next) => {
+  const username = req.params.username;
+  const arr = [];
+  const shopping = await shoppingTable.orderBy('username').get();
+  res.status(200).json(getActionsHelper(username, arr, shopping).map(
+    (item) => ({ ...item.data() })));
+})
 
-
-// //after buying a stock, find if stock already exists, add to it
-// //if doesn't exist, add new stock to stock table for user
-// //if buy is true, then buy, otherwise sell
-// const updateExistingStock = async (stock, username, quantity, buy) => {
-//   const stocks = await stockTable.orderBy("Username").get();
-//   for (let doc of stocks.docs) {
-//     let holding = doc.data();
-//     if (holding.Username === username && holding.Stock === stock) {
-//       if (buy) holding.Quantity += quantity;
-//       else holding.Quantity -= quantity;
-//       stockTable.doc(holding.id).update(holding);
-//       return;
-//     }
-//   }
-//   if (buy) {
-//     const newStock = serializeStocks(username, quantity, stock);
-//     stockTable.doc().set(newStock);
-//   }
-// }
-
-// //consolidate into helper functions later
-// app.get('/allusers/', async function (req, res, next) {
-//   const accounts = await userTable.orderBy('Username').get();
-//   const arr = [];
-//   for (let doc of accounts.docs) {
-//     let post = doc.data();
-//     console.log(post.Password);
-//     arr.push(post);
-//   }
-//   res.send(arr);
-// })
-
-// app.post('/maketransaction/', function (req, res, next) {
-//   const d = transactionTable.doc();
-//   d.set(req.body);
-//   res.send(d.id);
-// })
-
-
-
-
-
-// //maketransaction
-// //overview 
-// //addfunds
-
-
-// app.get('/alltransactions/', async function (req, res, next) {
-//   const accounts = await transactionTable.orderBy('Username').get();
-//   const arr = [];
-//   for (let doc of accounts.docs) {
-//     let post = doc.data();
-//     console.log(post.Password);
-//     arr.push(post);
-//   }
-//   res.send(arr);
-// })
-
-// app.get('/allstocks/', async function (req, res, next) {
-//   const accounts = await stockTable.orderBy('Username').get();
-//   const arr = [];
-//   for (let doc of accounts.docs) {
-//     let post = doc.data();
-//     console.log(post.Password);
-//     arr.push(post);
-//   }
-//   res.send(arr);
-// })
+app.get('/gettransportactions/:username', async (req, res, next) => {
+  const username = req.params.username;
+  const arr = [];
+  const transport = await transportTable.orderBy('username').get();
+  res.status(200).json(getActionsHelper(username, arr, transport).map(
+    (item) => ({ ...item.data() })));
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
-
-//GOODBYE JOJO
-
-// const admin = require("firebase-admin");
-// const serviceAccount = require("./service-account.json");
-// const express = require('express');
-// const bodyParser = require('body-parser');
-
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: "https://stock-up-31d01.firebaseio.com"
-// });
-
-// const db = admin.firestore();
-// const app = express();
-// const port = 8080;
-// app.use(bodyParser.json());
-
-// const userTable = db.collection("Users");
-// const stockTable = db.collection("UserStocks");
-// const transactionTable = db.collection("Transactions");
-
-// const usr = null;
-
-
-
-// //json fields are Username and Password
-// //TODO: check for already existing Username
-// //signing up for account
-// // app.post('/signup/', function (req, res, next) {
-// //   const loginInfo = req.body;
-// //   loginInfo.balance = 0;
-// //   if (loginInfo.Username.length < usernameLength) {
-// //     res.status(404).send("Username length must be at least 4 characters");
-// //     return;
-// //   }
-// //   if (loginInfo.Password.length < passwordLength) {
-// //     res.status(404).send("Password length must be at least 8 characters");
-// //     return;
-// //   }
-// //   const newDoc = userTable.doc(loginInfo.Username);
-// //   newDoc.set(loginInfo);
-// //   res.status(201).send(newDoc.id);
-// // })
-
-
-// //must be req.query.Username (take care frontend)
-// //return balance 
-// app.get('/maketransaction/', async (req, res, next) => {
-//   const user = await userTable.get(req.query.Username);
-//   res.json({ Balance: user.Balance });
-// })
-
-
-// //assuming JSON has fields of stock and quantity
-// //username has to be saved and passed down
-// //FILL IN THE STOCK PRICE
-// //in the fron end - add the balance from the get req and pass in
-// const stockPrice = 0;
-// app.post('/maketransaction/', async (req, res, next) => {
-//   const txnInfo = req.body;
-//   const amnt = txnInfo.Quantity * stockPrice;
-//   let Balance = txnInfo.Balance - amnt;
-//   if (txnInfo.Bought) {
-//     if (Balance < 0) {
-//       res.status(404).send("Not enough money!");
-//       return;
-//     }
-//   } else {
-//     //assume you can't sell a stock you don't own 
-//     //will fix later if needed
-//     Balance += amnt + amnt;
-//   }
-//   await userTable.doc(txnInfo.Username).update({ Balance });
-//   txn = serializeTransactions(usr, txnInfo.Buy, txnInfo.Quantity, txnInfo.Stock);
-//   transactionTable.doc().set(txn);
-//   updateExistingStock(txnInfo.Stock, usr, txnInfo.Quantity, txnInfo.Buy);
-//   res.status(201).send(txnInfo.Stock);
-// })
-
-
-
-// //after buying a stock, find if stock already exists, add to it
-// //if doesn't exist, add new stock to stock table for user
-// //if buy is true, then buy, otherwise sell
-// const updateExistingStock = async (stock, username, quantity, buy) => {
-//   const stocks = await stockTable.orderBy("Username").get();
-//   for (let doc of stocks.docs) {
-//     let holding = doc.data();
-//     if (holding.Username === username && holding.Stock === stock) {
-//       if (buy) holding.Quantity += quantity;
-//       else holding.Quantity -= quantity;
-//       stockTable.doc(holding.id).update(holding);
-//       return;
-//     }
-//   }
-//   if (buy) {
-//     const newStock = serializeStocks(username, quantity, stock);
-//     stockTable.doc().set(newStock);
-//   }
-// }
-
-// //consolidate into helper functions later
-// app.get('/allusers/', async function (req, res, next) {
-//   const accounts = await userTable.orderBy('Username').get();
-//   const arr = [];
-//   for (let doc of accounts.docs) {
-//     let post = doc.data();
-//     console.log(post.Password);
-//     arr.push(post);
-//   }
-//   res.send(arr);
-// })
-
-// app.post('/maketransaction/', function (req, res, next) {
-//   const d = transactionTable.doc();
-//   d.set(req.body);
-//   res.send(d.id);
-// })
-
-
-
-
-
-// //maketransaction
-// //overview 
-// //addfunds
-
-
-// app.get('/alltransactions/', async function (req, res, next) {
-//   const accounts = await transactionTable.orderBy('Username').get();
-//   const arr = [];
-//   for (let doc of accounts.docs) {
-//     let post = doc.data();
-//     console.log(post.Password);
-//     arr.push(post);
-//   }
-//   res.send(arr);
-// })
-
-// app.get('/allstocks/', async function (req, res, next) {
-//   const accounts = await stockTable.orderBy('Username').get();
-//   const arr = [];
-//   for (let doc of accounts.docs) {
-//     let post = doc.data();
-//     console.log(post.Password);
-//     arr.push(post);
-//   }
-//   res.send(arr);
-// })
-
-// app.listen(port, () => console.log(`Listening on port ${port}!`));
