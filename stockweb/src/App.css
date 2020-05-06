@@ -225,6 +225,11 @@ h1.logo {
 }
 .single-link:hover {
   background-color: rgb(80, 89, 170);
+  transition: all 0.3s ease;
+}
+
+.single-link:active {
+  background-color: rgb(80, 89, 170);
 }
 
 .single-link:hover .navlink {
@@ -234,7 +239,19 @@ h1.logo {
 .nav-logo {
   position: relative;
   left: 30px;
-  top: 20px;
+  top: 40px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.current-link {
+  background-color: rgb(80, 89, 170);
+}
+
+.current-link > .navlink{
+  color: #fff;
 }
 
 /* Create new budget */

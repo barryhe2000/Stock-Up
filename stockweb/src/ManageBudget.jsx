@@ -9,7 +9,7 @@ export default ({callback, budget}) => {
     return (
         <div>
             <div className="nav-component">
-                <NavBar />
+                <NavBar active_page="manage" />
             </div>
             
             <div className="manage-budget">
