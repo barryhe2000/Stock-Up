@@ -10,8 +10,6 @@ export default ({handleLogin, loggedIn, handleLogout}) => {
     
     // currently does not successfully redirect
     if (loggedIn) {
-        console.log(firebase.user);
-        console.log(firebase.User);
         return <Redirect to="/action" />;
 
     } else {
