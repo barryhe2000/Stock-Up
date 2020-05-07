@@ -19,7 +19,15 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export default (props) => {
+
   const [user, setUser] = useState(null);
+
+  // handles login from home page
+  const isLoggedIn = (login, user) => {
+    if (login && user) {
+      login();
+    }
+  }
 
   const uiConfig = {
     signInFlow: 'popup',
@@ -29,11 +37,11 @@ export default (props) => {
   function onAuthStateChange() {
     return firebase.auth().onAuthStateChanged((user) => {
       setUser(user);
-      
     });
   }
 
   useEffect(() => onAuthStateChange(), []);
+  useEffect(() => isLoggedIn(props.login, user), [props.login, user]);
 
   return (
     <div>

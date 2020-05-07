@@ -1,39 +1,68 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import Jumbotron from 'react-bootstrap/Jumbotron';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 import Home from './Home';
-import Transaction from './Transaction';
-import AddFunds from './AddFunds';
+import InputExpenseForm from './InputExpenseForm';
+import ManageBudget from './ManageBudget';
 import Action from './Action'
+import Authentication from './Authentication';
+import NavBar from './NavBar';
+import NewBudget from './NewBudget';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 function App() {
+
+  // handle login/logout in different components
+  // all components redirect to home page if no user is logged in
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleLogout = () => {
+      firebase.auth().signOut();
+      setLoggedIn(false);
+  }
+
+  const handleLogin = () => {
+      setLoggedIn(true);
+  }
+
   return (
     <div className="App">
       <Router>
         <Switch>
 
           <Route exact path="/">
-            <Home />
+            <Home handleLogin={handleLogin} loggedIn={loggedIn}
+            handleLogout={handleLogout}/>
           </Route>
 
-          <Route path="/action">
-            <Action />
+          <Route path="/action/">
+            <Authentication>
+              <Action loggedIn={loggedIn} handleLogout={handleLogout}/>
+            </Authentication>
           </Route>
 
-          <Route path="/transaction">
-            <Transaction />
+          <Route path="/inputexpense/">
+            <Authentication>
+              <InputExpenseForm />
+            </Authentication>
           </Route>
 
-          <Route path="/addfunds">
-            <AddFunds />
+          <Route path="/managebudget/">
+            <ManageBudget />
+          </Route>
+
+          <Route path="/nav/">
+            <NavBar />
+          </Route>
+
+          <Route path="/newbudget/">
+            <NewBudget />
           </Route>
 
         </Switch>

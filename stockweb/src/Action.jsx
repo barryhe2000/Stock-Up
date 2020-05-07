@@ -5,10 +5,10 @@ import 'firebase/auth';
 import {Redirect} from 'react-router-dom';
 
 
-export default () => {
+export default ({loggedIn, handleLogout}) => {
     let firstName = null;
     
-    if (firebase.auth().currentUser != null) {
+    if (loggedIn) {
         const user = firebase.auth().currentUser.displayName;
         firstName = user.replace(/ .*/,'');
         
@@ -36,7 +36,7 @@ export default () => {
                     <Button id="option-budget-button" variant="outline-dark" href="/managebudget">Manage Budget</Button>
                 </div>
             
-                <button onClick={() => firebase.auth().signOut()}>Sign Out</button>
+                <button onClick={handleLogout}>Sign Out</button>
 
             </div>
         </div>

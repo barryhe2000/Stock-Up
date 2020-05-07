@@ -1,28 +1,38 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import React, {useState} from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Authentication from './Authentication';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import {Redirect} from 'react-router-dom';
 
-export default () => {
+
+export default ({handleLogin, loggedIn, handleLogout}) => {
     
-    return (
-        <div className="home">
-            <h1 className="logo">Stock-Up</h1>
-            <Jumbotron id="jumbotron">
-            <h1>Budgeting Made Easy.</h1>
-            <p>
-                Create a budget, manage expenses, and track spending all in one place.
-            </p>
-            <p>
-                <Authentication />
-            </p>
-            <button onCLick={() => firebase.auth().signOut()}>Sign Out</button>
-            </Jumbotron>
-            {firebase.user && <div>HELLO</div>}
-            <img className="home-img" src={require('./images/gradient.png')} alt="hi"></img>
-        </div>
-    )
+    // currently does not successfully redirect
+    if (loggedIn) {
+        console.log(firebase.user);
+        console.log(firebase.User);
+        return <Redirect to="/action" />;
+
+    } else {
+        return (
+            <div className="home">
+                <h1 className="logo">Stock-Up</h1>
+
+                <Jumbotron id="jumbotron">
+                <h1>Budgeting Made Easy.</h1>
+                <p>Create a budget, manage expenses, and track spending all in one place.</p>
+                
+                <Authentication login={handleLogin}/>
+
+                <button onClick={handleLogout}>Sign Out</button>
+                </Jumbotron>
+                
+                <img className="home-img" src={require('./images/gradient.png')} alt="hi"></img>
+            </div>
+        )
+
+    }
+
+    
 }
