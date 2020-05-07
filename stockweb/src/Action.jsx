@@ -2,14 +2,22 @@ import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import {Redirect} from 'react-router-dom';
+
 
 export default () => {
+    let firstName = null;
+    
+    if (firebase.auth().currentUser != null) {
+        const user = firebase.auth().currentUser.displayName;
+        firstName = user.replace(/ .*/,'');
+        
     return (
         <div>
-            
             <div className="action-header">
-                <p className="action-title">Hi, Alice.</p>
+                <p className="action-title">{"Hi, " + (firebase.User && firstName) + "!"}</p>
                 <p className="action-subtitle">What would you like to do?</p>
+                
                 
             </div>
             <div className="action-options">
@@ -28,8 +36,12 @@ export default () => {
                     <Button id="option-budget-button" variant="outline-dark" href="/managebudget">Manage Budget</Button>
                 </div>
             
+                <button onClick={() => firebase.auth().signOut()}>Sign Out</button>
 
             </div>
         </div>
     )
+    } else {
+        return <Redirect to="/" />;
+    }
 }
