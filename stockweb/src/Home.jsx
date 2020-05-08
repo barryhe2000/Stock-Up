@@ -21,7 +21,7 @@ export default ({handleLogin, loggedIn, handleLogout}) => {
                 <h1>Budgeting Made Easy.</h1>
                 <p>Create a budget, manage expenses, and track spending all in one place.</p>
                 
-                <Authentication login={handleLogin}/>
+                <Authentication handleLogin={handleLogin}/>
 
                 <button onClick={handleLogout}>Sign Out</button>
                 </Jumbotron>
