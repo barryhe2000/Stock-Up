@@ -78,8 +78,8 @@ app.post('/action/:username', async (req, res, next) => {
 //user updates limit
 app.post('/updatelimit/:username', async (req, res, next) => {
   const username = req.params.username;
-  const limit = req.body.limit;
-  await usersTable.doc(username).update({ limit });
+  const l = req.body.lim;
+  await usersTable.doc(username).update({ limit: l });
   res.status(201).send("New limit updated");
 })
 

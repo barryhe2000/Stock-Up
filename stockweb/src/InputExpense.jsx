@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
-export default (loggedIn) => {
+export default ({ loggedIn }) => {
     // REMEMBER TO PASS IN CALLBACK INTO INPUTEXPENSEFORM LATER
 
     const handleInput = () => {

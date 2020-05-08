@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-export default ({callback}) => {
+export default ({ updateLimit }) => {
     const [amount, setAmount] = useState(0);
 
     return (
@@ -12,33 +12,33 @@ export default ({callback}) => {
 
             {/* form */}
             <Form className="budget-form">
-            <Form.Group id="amount-input" controlId="formBasicEmail">
-                <Form.Label className="amount-label">Amount</Form.Label>
-                <InputGroup >
+                <Form.Group id="amount-input" controlId="formBasicEmail">
+                    <Form.Label className="amount-label">Amount</Form.Label>
+                    <InputGroup >
 
-                    {/* prepend $ symbol */}
-                    <InputGroup.Prepend>
-                        <InputGroup.Text id="inputGroupPrepend">$</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <Form.Control type="text" placeholder="e.g. 100.00" 
-                    onChange={(e) => setAmount(e.target.value)} 
-                    aria-describedby="inputGroupPrepend"
-                    required 
-                    id="amount-input" />
+                        {/* prepend $ symbol */}
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="inputGroupPrepend">$</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <Form.Control type="text" placeholder="e.g. 100.00"
+                            onChange={(e) => setAmount(e.target.value)}
+                            aria-describedby="inputGroupPrepend"
+                            required
+                            id="amount-input" />
 
-                    {/* feedback */}
-                    <Form.Control.Feedback type="invalid">
-                    Please choose a username.
+                        {/* feedback */}
+                        <Form.Control.Feedback type="invalid">
+                            Please choose a username.
                     </Form.Control.Feedback>
-                </InputGroup>
-            </Form.Group>
+                    </InputGroup>
+                </Form.Group>
 
-            {/* submit button */}
-            <Button id="set-balance-submit" variant="white" 
-            type="submit">
-                Create Budget
+                {/* submit button */}
+                <Button id="set-balance-submit" variant="white"
+                    type="submit" onClick={() => updateLimit(amount)}>
+                    Create Budget
             </Button>
-        </Form>
+            </Form>
         </div>
     )
 }

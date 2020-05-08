@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import NavBar from './NavBar';
 import NewBudget from './NewBudget';
 
-export default ({callback, budget}) => {
+export default ({ updateLimit, budget }) => {
 
     return (
         <div>
             <div className="nav-component">
                 <NavBar active_page="manage" />
             </div>
-            
+
             <div className="manage-budget">
                 <p className="manage-budget-title">Manage Budget</p>
                 <p className="current-budget">Current Monthly Budget</p>
@@ -20,12 +20,12 @@ export default ({callback, budget}) => {
             </div>
 
             <div className="create-budget">
-                <NewBudget />
+                <NewBudget updateLimit={updateLimit} />
             </div>
 
             <div className="budget-img">
-                <img className="budget-bottom-img" src={require('./images/budget_img.png')} 
-                alt="Person Riding Bike"/>
+                <img className="budget-bottom-img" src={require('./images/budget_img.png')}
+                    alt="Person Riding Bike" />
             </div>
 
         </div>

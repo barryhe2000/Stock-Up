@@ -19,18 +19,27 @@ import {
   Route,
 } from "react-router-dom";
 
+
 function App() {
 
   // handle login/logout in different components
   // all components redirect to home page if no user is logged in
   const [loggedIn, setLoggedIn] = useState(false);
+  const [limit, setLimit] = useState(0);
+  const [balance, setBalance] = useState(0); //number of $ user has spent
 
   let username = null;
+
   if (loggedIn) username = firebase.auth().currentUser.email;
 
   //calls post request for '/action/:username'
   const createUser = () => {
     axios.post(`/action/${username}`);
+  }
+
+  const updateLimit = (lim) => {
+    axios.post(`/updatelimit/${username}`, { lim: lim }).then(
+      res => setLimit(lim))
   }
 
   const handleLogout = () => {
@@ -66,7 +75,9 @@ function App() {
           </Route>
 
           <Route path="/managebudget/">
-            <ManageBudget />
+            <Authentication handleLogin={handleLogin}>
+              <ManageBudget updateLimit={updateLimit} />
+            </Authentication>
           </Route>
 
           <Route path="/nav/">
