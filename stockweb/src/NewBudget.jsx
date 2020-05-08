@@ -34,7 +34,7 @@ export default ({callback}) => {
             </Form.Group>
 
             {/* submit button */}
-            <Button id="add-funds-submit" variant="white" 
+            <Button id="set-balance-submit" variant="white" 
             type="submit">
                 Create Budget
             </Button>
