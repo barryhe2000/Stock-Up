@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as firebase from 'firebase/app';
@@ -11,6 +11,8 @@ import Action from './Action'
 import Authentication from './Authentication';
 import NavBar from './NavBar';
 import NewBudget from './NewBudget';
+import axios from 'axios';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,13 +25,21 @@ function App() {
   // all components redirect to home page if no user is logged in
   const [loggedIn, setLoggedIn] = useState(false);
 
+  let username = null;
+  if (loggedIn) username = firebase.auth().currentUser.email;
+
+  //calls post request for '/action/:username'
+  const createUser = () => {
+    axios.post(`/action/${username}`);
+  }
+
   const handleLogout = () => {
-      firebase.auth().signOut();
-      setLoggedIn(false);
+    firebase.auth().signOut();
+    setLoggedIn(false);
   }
 
   const handleLogin = () => {
-      setLoggedIn(true);
+    setLoggedIn(true);
   }
 
   return (
@@ -39,12 +49,13 @@ function App() {
 
           <Route exact path="/">
             <Home handleLogin={handleLogin} loggedIn={loggedIn}
-            handleLogout={handleLogout}/>
+              handleLogout={handleLogout} />
           </Route>
 
           <Route path="/action/">
             <Authentication handleLogin={handleLogin}>
-              <Action loggedIn={loggedIn} handleLogout={handleLogout}/>
+              <Action loggedIn={loggedIn} handleLogout={handleLogout}
+                createUser={createUser} />
             </Authentication>
           </Route>
 

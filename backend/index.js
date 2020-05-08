@@ -67,7 +67,7 @@ app.post('/maketransaction/', async (req, res, next) => {
 app.post('/action/:username', async (req, res, next) => {
   const username = req.params.username;
   const accounts = await usersTable.where('username', '==', username).get();
-  if (!accounts.empty) res.send("Welcome back!");
+  if (!accounts.empty) res.send(username);
   else {
     const tbl = usersTable.doc(username);
     tbl.set({ username: username, balance: 0, limit: 0 });
