@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import Home from './Home';
+import InputExpense from './InputExpense';
 import InputExpenseForm from './InputExpenseForm';
 import ManageBudget from './ManageBudget';
 import Action from './Action'
@@ -42,14 +43,14 @@ function App() {
           </Route>
 
           <Route path="/action/">
-            <Authentication>
+            <Authentication handleLogin={handleLogin}>
               <Action loggedIn={loggedIn} handleLogout={handleLogout}/>
             </Authentication>
           </Route>
 
           <Route path="/inputexpense/">
-            <Authentication>
-              <InputExpenseForm />
+            <Authentication handleLogin={handleLogin}>
+              <InputExpense loggedIn={loggedIn} />
             </Authentication>
           </Route>
 
@@ -63,6 +64,10 @@ function App() {
 
           <Route path="/newbudget/">
             <NewBudget />
+          </Route>
+
+          <Route path="/expenseinput/">
+            <InputExpenseForm />
           </Route>
 
         </Switch>
