@@ -373,7 +373,7 @@ h1.logo {
 }
 
 .input-expense-day {
-  left: 250px;
+  left: 230px;
 }
 
 .input-expense-year {
@@ -404,4 +404,18 @@ h1.logo {
   position: absolute;
   left: 255px;
   top: 130px;
+  z-index: 2;
+}
+
+.input-expense-image {
+  height: 100%;
+  width: 100%;
+}
+
+.input-image-container {
+  position: absolute;
+  left: 770px;
+  top: 260px;
+  width: 600px;
+  height: 440px;
 }
