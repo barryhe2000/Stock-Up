@@ -23,7 +23,7 @@ export default ({loggedIn, handleLogout}) => {
             <div className="action-options">
                 <div className="option-input-expense">
                     <img className="action-input-img" src={require('./images/134.png')} alt="Girl Holding Bags"/>
-                    <Button id="option-input-button" variant="outline-dark" href="/Home">Input Expense</Button>
+                    <Button id="option-input-button" variant="outline-dark" href="/inputexpense">Input Expense</Button>
                 </div>
 
                 <div className="option-track-spending">
