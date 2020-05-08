@@ -32,8 +32,8 @@ const getActionsHelper = (username, arr, lst) => {
 };
 
 //user inputs a new budget transaction
-app.post('/maketransaction/', async (req, res, next) => {
-  const category = req.query.category;
+app.post('/maketransaction/:category', async (req, res, next) => {
+  const category = req.params.category;
   const info = req.body;
   const username = info.username;
   const prev = await usersTable.where('username', '==', username).get();

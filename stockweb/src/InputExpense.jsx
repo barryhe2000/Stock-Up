@@ -5,12 +5,7 @@ import { Redirect } from 'react-router-dom';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
-export default ({ loggedIn }) => {
-    // REMEMBER TO PASS IN CALLBACK INTO INPUTEXPENSEFORM LATER
-
-    const handleInput = () => {
-
-    }
+export default (loggedIn, makeTransaction) => {
 
     if (loggedIn) {
 
@@ -25,7 +20,7 @@ export default ({ loggedIn }) => {
                 </div>
 
                 <div className="input-expense-component">
-                    <InputExpenseForm handleInput={handleInput} />
+                    <InputExpenseForm makeTransaction={makeTransaction} />
                 </div>
 
                 <div className="input-image-container">

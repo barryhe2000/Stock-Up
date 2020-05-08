@@ -27,6 +27,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [limit, setLimit] = useState(0);
   const [balance, setBalance] = useState(0); //number of $ user has spent
+  const [expenses, setExpenses] = useState([]); //stuff bought
 
   let username = null;
 
@@ -37,9 +38,20 @@ function App() {
     axios.post(`/action/${username}`);
   }
 
+  //calls post request for updatelimit
   const updateLimit = (lim) => {
     axios.post(`/updatelimit/${username}`, { lim: lim }).then(
-      res => setLimit(lim))
+      res => setLimit(lim));
+  }
+
+  const makeTransaction = (desc, amnt, mon, day, yr, cat) => {
+    //not entering the function
+    axios.post(`/maketransaction/${cat}`,
+      { amount: amnt, day: day, description: desc, year: yr, month: mon, username: username })
+      .then(res =>
+        setExpenses([...expenses, {
+          amount: amnt, day: day, description: desc, year: yr, month: mon, username: username
+        }]));
   }
 
   const handleLogout = () => {
@@ -70,7 +82,8 @@ function App() {
 
           <Route path="/inputexpense/">
             <Authentication handleLogin={handleLogin}>
-              <InputExpense loggedIn={loggedIn} />
+              <InputExpense loggedIn={loggedIn}
+                makeTransaction={makeTransaction} />
             </Authentication>
           </Route>
 

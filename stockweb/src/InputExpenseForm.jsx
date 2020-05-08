@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-export default ({ handleInput }) => {
+export default (makeTransaction) => {
 
     const [category, setCategory] = useState('');
     const [amount, setAmount] = useState(0);
@@ -17,16 +17,12 @@ export default ({ handleInput }) => {
     // handle form submit
     const handleSubmit = (event) => {
         let form = event.currentTarget;
-
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
         }
-
         setValidated(true);
-        handleInput();
-
-
+        makeTransaction(description, amount, month, day, year, category);
     };
 
     return (
@@ -39,6 +35,7 @@ export default ({ handleInput }) => {
                     <Form.Label className="expense-form-label">Category</Form.Label>
                     <Form.Control as="select"
                         onChange={(e) => setCategory(e.target.value)}>
+                        <option>Select</option>
                         <option>Bills</option>
                         <option>Entertainment</option>
                         <option>Food</option>
@@ -107,14 +104,14 @@ export default ({ handleInput }) => {
                 <Form.Group controlId="formBasicPassword" className="input-expense-desc">
                     <Form.Label className="expense-form-label">Description</Form.Label>
                     <Form.Control type="text" placeholder="e.g. Electricity bill"
-                        onChange={(e) => setDescription(parseInt(e.target.value))} required
+                        onChange={(e) => setDescription(e.target.value)} required
                     />
                     <Form.Control.Feedback type="invalid">
                         Please enter a valid description.
                     </Form.Control.Feedback>
                 </Form.Group>
 
-                {/* description */}
+                {/* button */}
                 <Button id="input-expense-submit"
                     variant="white" type="submit" >
                     Input Expense
