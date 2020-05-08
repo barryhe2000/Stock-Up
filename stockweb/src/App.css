@@ -61,9 +61,10 @@ h1.logo {
   height: 100%;
 }
 
-/* Transaction Component */
 
-#transaction-submit {
+/* New budget component */
+
+#set-balance-submit {
   background-color: #201D5F;
   color: #fff;
   width: 200px;
@@ -71,30 +72,7 @@ h1.logo {
   left: 25px;
 }
 
-#transaction-submit:hover {
-  background-color: #646CB3;
-}
-
-.transaction-form-label {
-  color: #201D5F;;
-}
-
-.transaction-form {
-  width: 250px;
-  margin: 0 auto;
-}
-
-/* AddFunds Component */
-
-#add-funds-submit {
-  background-color: #201D5F;
-  color: #fff;
-  width: 200px;
-  position: relative;
-  left: 25px;
-}
-
-#add-funds-submit:hover {
+#set-balance-submit:hover {
   background-color: #646CB3;
 }
 
@@ -104,7 +82,7 @@ h1.logo {
 
 }
 
-/* Action Component */
+/* Action page */
 
 .action-options {
   position: absolute;
@@ -202,7 +180,7 @@ h1.logo {
   right: 108px;
 }
 
-/* Nav bar */
+/* Nav bar component */
 .custom-navbar {
   background-color: #201D5F;
   color: #fff;
@@ -277,7 +255,8 @@ h1.logo {
   padding-bottom: 10px;
 }
 
-/* Manage budget */
+/* Manage budget page */
+
 .manage-budget-title {
   font-weight: 800;
   font-size: 40px;
@@ -354,4 +333,75 @@ h1.logo {
   position: absolute;
   left: 15px;
 
+}
+
+/* Input expense form */
+
+#input-expense-submit {
+  position: absolute;
+  top: 310px;
+  background-color: #201D5F;
+  color: #fff;
+  width: 200px;
+
+}
+
+#input-expense-submit:hover {
+  background-color: #646CB3;
+}
+
+.expense-form-label {
+  color: #201D5F;;
+}
+
+.input-expense-form {
+  width: 250px;
+
+}
+
+.input-expense-amount {
+  position: absolute;
+  left: 310px;
+  top: 0px;
+  width: 290px;
+}
+
+.input-expense-month, .input-expense-day, .input-expense-year {
+  position: absolute;
+  width: 170px;
+  top: 100px;
+}
+
+.input-expense-day {
+  left: 250px;
+}
+
+.input-expense-year {
+  left: 460px;
+}
+
+.input-expense-desc {
+  position: absolute;
+  top: 200px;
+}
+
+/* Input expense page */
+
+.input-expense-header {
+  position: absolute;
+  left: 250px;
+  top: 30px;
+}
+
+.input-expense-title {
+  font-weight: 800;
+  font-size: 40px;
+  color: #201D5F;
+  letter-spacing: 1px;
+}
+
+.input-expense-component {
+  position: absolute;
+  left: 255px;
+  top: 130px;
 }
