@@ -23,9 +23,9 @@ export default (props) => {
   const [user, setUser] = useState(null);
 
   // handles login from home page
-  const isLoggedIn = (login, user) => {
-    if (login && user) {
-      login();
+  const isLoggedIn = (handleLogin, user) => {
+    if (handleLogin && user) {
+      handleLogin();
     }
   }
 
@@ -41,7 +41,7 @@ export default (props) => {
   }
 
   useEffect(() => onAuthStateChange(), []);
-  useEffect(() => isLoggedIn(props.login, user), [props.login, user]);
+  useEffect(() => isLoggedIn(props.handleLogin, user), [props.handleLogin, user]);
 
   return (
     <div>
