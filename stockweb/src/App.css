@@ -85,14 +85,13 @@ h1.logo {
 /* Action page */
 
 .action-options {
-  position: absolute;
-  top: 250px;
-  left: 60px;
+  position: relative;
+  top: 100px;
 }
 
 .option-input-expense {
   width: 400px;
-  position: absolute;
+  position: relative;
   left: 20px;
 }
 
@@ -117,8 +116,8 @@ h1.logo {
 
 .option-track-spending {
   width: 400px;
-  position: absolute;
-  left: 450px;
+  position: relative;
+  left: 60px;
 }
 
 #option-overview-button {
@@ -138,8 +137,8 @@ h1.logo {
 
 .option-manage-budget{
   width: 400px;
-  position: absolute;
-  left: 900px;
+  position: relative;
+  left: 80px;
 
 }
 
@@ -155,9 +154,9 @@ h1.logo {
 }
 
 .action-header {
-  position: absolute;
-  top: 40px;
-  left: 75px;
+  position: relative;
+  top: 30px;
+  left: 20px;
 }
 
 .action-title {
@@ -318,9 +317,9 @@ h1.logo {
 }
 
 .budget-img {
-  position: absolute;
-  top: 365px;
-  left: 160px;
+  position: fixed;
+  bottom: 0;
+  left: 180px;
 }
 
 .budget-bottom-img {
@@ -413,9 +412,9 @@ h1.logo {
 }
 
 .input-image-container {
-  position: absolute;
-  left: 770px;
-  top: 260px;
-  width: 600px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 630px;
   height: 440px;
 }
