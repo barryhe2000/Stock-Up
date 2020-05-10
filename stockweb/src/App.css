@@ -449,12 +449,12 @@ h1.logo {
 /* donut chart */
 
 .donut {
-  width: 300px;
+  width: 150px;
 }
 
 .donut-chart {
-  width: 300px;
-  height: 300px;
+  width: 150px;
+  height: 150px;
 }
 
 .donut-title {
@@ -467,7 +467,7 @@ h1.logo {
 /* line chart */
 
 .line-chart {
-  height: 350px;
+  height: 450px;
   width: 600px;
 }
 
@@ -479,4 +479,49 @@ h1.logo {
   letter-spacing: 1px;
 
 }
+
+/* spending report */
+
+.graph-divider1 {
+  position: relative;
+  height: 0px;
+  left: 440px;
+  bottom: 190px;
+  width: 480px;
+  border: 1px solid rgba(72, 77, 129, 0.28);
+  transform: rotate(-90deg);
+}
+
+.graph-divider2 {
+  position: relative;
+  height: 0px;
+  left: 680px;
+  bottom: 420px;
+  width: 290px;
+  border: 1px solid rgba(72, 77, 129, 0.28);
+}
+
+.line-chart-component {
+  width: 630px;
+  height: 480px;
+  padding: 30px;
+}
+
+.donut-chart-component {
+  width: 180px;
+  position: relative;
+  left: 740px;
+  bottom: 440px;
+
+}
+
+.stats-component {
+  width: 220px;
+  position: relative;
+  left: 710px;
+  bottom: 400px;
+}
+
+
+
 

@@ -14,6 +14,7 @@ import NewBudget from './NewBudget';
 import BudgetStats from './BudgetStats';
 import DonutChart from './DonutChart';
 import LineChart from './LineChart';
+import SpendingReport from './SpendingReport';
 import axios from 'axios';
 
 import {
@@ -118,6 +119,10 @@ function App() {
 
           <Route path="/line/">
             <LineChart />
+          </Route>
+
+          <Route path="/spendingreport/">
+            <SpendingReport />
           </Route>
 
         </Switch>
