@@ -418,3 +418,31 @@ h1.logo {
   width: 630px;
   height: 440px;
 }
+
+/* budget statistics */
+.budget-stats {
+  width: 220px;
+}
+
+.remaining-budget, .remaining-budget-amount, .current-balance, 
+.current-balance-amount, .average-spending, .average-spending-amount {
+  text-align: center;
+  font-weight: 600;
+}
+
+.remaining-budget, .current-balance, .average-spending {
+  color: #73729B;
+}
+
+.remaining-budget-amount, .current-balance-amount, .average-spending-amount {
+  color: #252733;
+}
+
+.stats-divider {
+  position: relative;
+  height: 0px;
+  margin: 0 auto 12px auto;
+  width: 180px;
+  border: 0.6px solid rgba(113, 118, 167, 0.28);
+}
+
