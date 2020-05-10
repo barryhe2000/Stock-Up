@@ -11,6 +11,9 @@ import Action from './Action'
 import Authentication from './Authentication';
 import NavBar from './NavBar';
 import NewBudget from './NewBudget';
+import BudgetStats from './BudgetStats';
+import DonutChart from './DonutChart';
+import LineChart from './LineChart';
 import axios from 'axios';
 
 import {
@@ -103,6 +106,18 @@ function App() {
 
           <Route path="/expenseinput/">
             <InputExpenseForm />
+          </Route>
+         
+          <Route path="/stats/">
+            <BudgetStats />
+          </Route>
+
+          <Route path="/donut/">
+            <DonutChart />
+          </Route>
+
+          <Route path="/line/">
+            <LineChart />
           </Route>
 
         </Switch>
