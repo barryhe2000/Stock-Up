@@ -446,3 +446,21 @@ h1.logo {
   border: 0.6px solid rgba(113, 118, 167, 0.28);
 }
 
+/* donut chart */
+
+.donut {
+  width: 300px;
+}
+
+.donut-chart {
+  width: 300px;
+  height: 300px;
+}
+
+.donut-title {
+  text-align: center;
+  color: #201D5F;
+  font-weight: 500;
+  font-size: 20px;
+}
+
