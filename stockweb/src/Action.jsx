@@ -31,7 +31,7 @@ export default ({ loggedIn, handleLogout, createUser }) => {
                     <div className="option-track-spending">
                         <img className="action-track-img" src={require('./images/075.png')} alt="Man Checking Screen" />
                         <Button id="option-track-button" variant="outline-dark"
-                            href="/Home" onClick={createUser}>
+                            href="/trackspending" onClick={createUser}>
                             Track Spending</Button>
                     </div>
 

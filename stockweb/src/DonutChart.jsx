@@ -2,9 +2,12 @@ import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
 
 export default () => {
+
+    // needs balance and budget
     const budget = 200;
     const balance = 80;
     const difference = budget - balance;
+    const percentage = 40;
     const data = {
         labels: ['Amount Spent', 'Remaining Budget'],
         datasets: [
@@ -32,6 +35,8 @@ export default () => {
                     responsive: true
                 }} />
             </div>
+
+            <p className="percentage">{percentage}%</p>
 
         </div>
     )

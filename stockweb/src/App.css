@@ -450,6 +450,7 @@ h1.logo {
 
 .donut {
   width: 150px;
+  height: 200px;
 }
 
 .donut-chart {
@@ -464,16 +465,22 @@ h1.logo {
   font-size: 20px;
 }
 
+.percentage {
+  position: relative;
+  bottom: 90px;
+  left: 60px;
+}
+
 /* line chart */
 
 .line-chart {
-  height: 450px;
-  width: 600px;
+  height: 480px;
+  width: 660px;
 }
 
 .line-chart-title {
   color: #201D5F;
-  font-weight: 800;
+  font-weight: 500;
   font-size: 26px;
   margin-left: 10px;
   letter-spacing: 1px;
@@ -485,7 +492,7 @@ h1.logo {
 .graph-divider1 {
   position: relative;
   height: 0px;
-  left: 440px;
+  left: 480px;
   bottom: 190px;
   width: 480px;
   border: 1px solid rgba(72, 77, 129, 0.28);
@@ -495,7 +502,7 @@ h1.logo {
 .graph-divider2 {
   position: relative;
   height: 0px;
-  left: 680px;
+  left: 720px;
   bottom: 420px;
   width: 290px;
   border: 1px solid rgba(72, 77, 129, 0.28);
@@ -510,7 +517,7 @@ h1.logo {
 .donut-chart-component {
   width: 180px;
   position: relative;
-  left: 740px;
+  left: 780px;
   bottom: 440px;
 
 }
@@ -518,8 +525,34 @@ h1.logo {
 .stats-component {
   width: 220px;
   position: relative;
-  left: 710px;
+  left: 750px;
   bottom: 400px;
+}
+
+.spending-report {
+  height: 590px;
+}
+
+/* track spending page */
+
+.track-spending-header {
+  position: absolute;
+  left: 250px;
+  top: 30px;
+}
+
+.track-spending-title {
+  color: #201D5F;
+  letter-spacing: 1px;
+  font-weight: 800;
+  font-size: 40px;
+
+}
+.spending-report-component {
+  position: absolute;
+  left: 220px;
+  top: 100px;
+  height: 600px;
 }
 
 
