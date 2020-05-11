@@ -4,32 +4,34 @@ import Button from 'react-bootstrap/Button';
 import NavBar from './NavBar';
 import NewBudget from './NewBudget';
 
-export default ({ updateLimit, budget }) => {
+export default ({ updateLimit, budget }, loggedIn) => {
+    if (loggedIn) {
+        return (
+            <div>
+                <div className="nav-component">
+                    <NavBar active_page="manage" />
+                </div>
 
-    return (
-        <div>
-            <div className="nav-component">
-                <NavBar active_page="manage" />
+                <div className="manage-budget">
+                    <p className="manage-budget-title">Manage Budget</p>
+                    <p className="current-budget">Current Monthly Budget</p>
+                    <div className="current-budget-amount"><p>100</p></div>
+                    <div className="divider"></div>
+                </div>
+
+                <div className="create-budget">
+                    <NewBudget updateLimit={updateLimit} />
+                </div>
+
+                <div className="budget-img">
+                    <img className="budget-bottom-img" src={require('./images/budget_img.png')}
+                        alt="Person Riding Bike" />
+                </div>
+
             </div>
+        )
+    }
 
-            <div className="manage-budget">
-                <p className="manage-budget-title">Manage Budget</p>
-                <p className="current-budget">Current Monthly Budget</p>
-                <div className="current-budget-amount"><p>100</p></div>
-                <div className="divider"></div>
-            </div>
-
-            <div className="create-budget">
-                <NewBudget updateLimit={updateLimit} />
-            </div>
-
-            <div className="budget-img">
-                <img className="budget-bottom-img" src={require('./images/budget_img.png')}
-                    alt="Person Riding Bike" />
-            </div>
-
-        </div>
-    )
 
 
 }

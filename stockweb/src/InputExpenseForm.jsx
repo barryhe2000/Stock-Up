@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-export default (makeTransaction) => {
+export default ({ makeTransaction }) => {
 
     const [category, setCategory] = useState('');
     const [amount, setAmount] = useState(0);
@@ -113,7 +113,7 @@ export default (makeTransaction) => {
 
                 {/* button */}
                 <Button id="input-expense-submit"
-                    variant="white" type="submit" >
+                    variant="white" type="submit">
                     Input Expense
                 </Button>
             </Form>

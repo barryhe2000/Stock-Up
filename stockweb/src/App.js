@@ -52,7 +52,6 @@ function App() {
   }
 
   const makeTransaction = (desc, amnt, mon, day, yr, cat) => {
-    //not entering the function
     axios.post(`/maketransaction/${cat}`,
       { amount: amnt, day: day, description: desc, year: yr, month: mon, username: username })
       .then(res =>
@@ -89,14 +88,14 @@ function App() {
 
           <Route path="/inputexpense/">
             <Authentication handleLogin={handleLogin}>
-              <InputExpense loggedIn={loggedIn}
-                makeTransaction={makeTransaction} />
+              <InputExpense makeTransaction={makeTransaction} loggedIn={loggedIn}
+              />
             </Authentication>
           </Route>
 
           <Route path="/managebudget/">
             <Authentication handleLogin={handleLogin}>
-              <ManageBudget updateLimit={updateLimit} />
+              <ManageBudget loggedIn={loggedIn} updateLimit={updateLimit} />
             </Authentication>
           </Route>
 
@@ -117,7 +116,7 @@ function App() {
           <Route path="/expenseinput/">
             <InputExpenseForm />
           </Route>
-         
+
           <Route path="/stats/">
             <BudgetStats />
           </Route>
@@ -140,7 +139,7 @@ function App() {
 
           <Route path="/expense/">
             <Expense month='1' day='15' year='2020'
-            amount='200' description="Rent"/>
+              amount='200' description="Rent" />
           </Route>
 
 

@@ -42,17 +42,17 @@ app.post('/maketransaction/:category', async (req, res, next) => {
     b += doc.data().balance;
   }
   let tbl = null;
-  if (category === "bills") {
+  if (category === "Bills") {
     tbl = billsTable.doc();
-  } else if (category === "entertainment") {
+  } else if (category === "Entertainment") {
     tbl = entertainmentTable.doc();
-  } else if (category === "food") {
+  } else if (category === "Food") {
     tbl = foodTable.doc();
-  } else if (category === "home") {
+  } else if (category === "Home") {
     tbl = homeTable.doc();
-  } else if (category === "other") {
+  } else if (category === "Other") {
     tbl = otherTable.doc();
-  } else if (category === "shopping") {
+  } else if (category === "Shopping") {
     tbl = shoppingTable.doc();
   } else { //transport
     tbl = transportTable.doc();
