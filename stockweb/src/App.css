@@ -184,7 +184,7 @@ h1.logo {
   background-color: #201D5F;
   color: #fff;
   width: 220px;
-  height: 100vh;
+  height: 100%;
   position: relative;
   right: 20px;
   z-index: 2;
@@ -228,6 +228,10 @@ h1.logo {
 
 .current-link > .navlink{
   color: #fff;
+}
+
+.nav-component {
+  height: 100%;
 }
 
 /* Create new budget */
@@ -533,6 +537,63 @@ h1.logo {
   height: 590px;
 }
 
+/* recent expenses */
+.recent-title {
+  font-weight: 600;
+  color: #201D5F;
+  letter-spacing: 1px;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.heading-date, .heading-amount, .heading-desc {
+  display: inline-block;
+  font-weight: 600;
+  color: #201D5F;
+  letter-spacing: 0.5px;
+}
+
+.heading-amount {
+  position: relative;
+  left: 150px;
+}
+
+.heading-desc {
+  position: relative;
+  left: 290px;
+}
+
+/* expense component */
+
+.individual-expense-data {
+ 
+}
+
+.individual-date, .individual-amount, .individual-desc {
+  display: inline-block;
+}
+
+.individual-amount {
+  position: relative;
+  left: 120px;
+}
+
+.individual-desc {
+  position: relative;
+  left: 300px;
+}
+
+.expense-divider {
+  position: relative;
+  height: 0px;
+  margin-bottom: 12px;
+  width: 700px;
+  left: 0;
+  border: 0.4px solid rgba(113, 118, 167, 0.28);
+}
+.expenses {
+  border: 1px solid red;
+}
 /* track spending page */
 
 .track-spending-header {
@@ -554,6 +615,15 @@ h1.logo {
   top: 100px;
   height: 600px;
 }
+
+.recent-expenses-component {
+  position: absolute;
+  left: 260px;
+  top: 700px;
+}
+
+
+
 
 
 

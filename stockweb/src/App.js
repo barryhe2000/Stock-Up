@@ -15,6 +15,9 @@ import BudgetStats from './BudgetStats';
 import DonutChart from './DonutChart';
 import LineChart from './LineChart';
 import SpendingReport from './SpendingReport';
+import TrackSpending from './TrackSpending';
+import RecentExpenses from './RecentExpenses';
+import Expense from './Expense';
 import axios from 'axios';
 
 import {
@@ -97,6 +100,12 @@ function App() {
             </Authentication>
           </Route>
 
+          <Route path="/trackspending/">
+            <Authentication handleLogin={handleLogin}>
+              <TrackSpending loggedIn={loggedIn} />
+            </Authentication>
+          </Route>
+
           <Route path="/nav/">
             <NavBar />
           </Route>
@@ -124,6 +133,16 @@ function App() {
           <Route path="/spendingreport/">
             <SpendingReport />
           </Route>
+
+          <Route path="/recentexpenses/">
+            <RecentExpenses />
+          </Route>
+
+          <Route path="/expense/">
+            <Expense month='1' day='15' year='2020'
+            amount='200' description="Rent"/>
+          </Route>
+
 
         </Switch>
       </Router>
