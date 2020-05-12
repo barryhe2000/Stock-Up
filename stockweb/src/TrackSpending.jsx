@@ -8,6 +8,7 @@ export default ({ limit, balance, expenses, yearExpenses }, loggedIn) => {
     // should take in budget
     // need to calculate statistics and data to pass into graphs
 
+
     if (loggedIn) {
         return (
             <div className="track-spending">

@@ -8,7 +8,7 @@ export default ({ expenses }, loggedIn) => {
     if (loggedIn) {
         return (
             <div>
-                <p className="recent-title">Recent Expenses</p>
+                <p className="recent-title">Expenses This Month</p>
                 <div className="expense-header">
                     <p className="heading-date">Date</p>
                     <p className="heading-amount">Amount</p>
