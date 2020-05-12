@@ -33,6 +33,10 @@ function App() {
   // handle login/logout in different components
   // all components redirect to home page if no user is logged in
   const [loggedIn, setLoggedIn] = useState(false);
+  // let loggedIn = false;
+  // const setLoggedIn = (b) => {
+  //   loggedIn = b;
+  // }
   const [limit, setLimit] = useState(0);
   const [balance, setBalance] = useState(0); //number of $ user has spent
   const [expenses, setExpenses] = useState([]); //curr month&year
@@ -107,7 +111,7 @@ function App() {
   const handleLogout = () => {
     setLoggedIn(false);
     firebase.auth().signOut();
-  
+
   }
 
   const handleLogin = () => {
