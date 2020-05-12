@@ -19,7 +19,7 @@ export default ({ limit, yearExpenses, balance }) => {
     let dec = 0;
 
     const calculateMonth = (exp) => {
-    
+
         if (exp.month === 1) jan += exp.amount;
         else if (exp.month === 2) feb += exp.amount;
         else if (exp.month === 3) mar += exp.amount;
@@ -35,22 +35,20 @@ export default ({ limit, yearExpenses, balance }) => {
         else {
             //do something here cuz it went wrong my dude 
             //erro msg for later
-        
+
         }
     }
 
     yearExpenses.map((exp) => calculateMonth(exp));
 
     const data = [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec];
-
+    const curMonth = new Date().getMonth() + 1;
     let total = 0;
-    const calculateAverage = (month) => {
-        total += month;
+    for (let i = 0; i < curMonth; i++) {
+        total += data[i];
     }
+    const average = total / curMonth;
 
-    data.map(month => calculateAverage(month));
-    const average = total/12;
-    
     return (
         <div className="spending-report">
 
