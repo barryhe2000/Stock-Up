@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 import RecentExpenses from './RecentExpenses';
 
 //was outside
-export default ({ limit, balance, expenses }, loggedIn) => {
+export default ({ limit, balance, expenses, yearExpenses }, loggedIn) => {
     // should take in budget
     // need to calculate statistics and data to pass into graphs
 
@@ -20,7 +20,8 @@ export default ({ limit, balance, expenses }, loggedIn) => {
                 </div>
 
                 <div className="spending-report-component">
-                    <SpendingReport limit={limit} balance={balance} />
+                    <SpendingReport yearExpenses={yearExpenses} limit={limit}
+                        balance={balance} />
                 </div>
 
                 <div className="recent-expenses-component">

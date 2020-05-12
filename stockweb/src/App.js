@@ -35,9 +35,10 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [limit, setLimit] = useState(0);
   const [balance, setBalance] = useState(0); //number of $ user has spent
-  const [expenses, setExpenses] = useState([]); //stuff bought
+  const [expenses, setExpenses] = useState([]); //curr month&year
   const [month, setMonth] = useState(0);
   const [year, setYear] = useState(0);
+  const [yearExpenses, setYearExpenses] = useState([]);
 
   let username = null;
   if (loggedIn) username = firebase.auth().currentUser.email;
@@ -89,14 +90,17 @@ function App() {
 
   useEffect(() => getAllActions());
 
+  const getYearActions = () => {
+    axios.get(`/getallactions/${username}?year=${year}`).then(
+      res => { setYearExpenses(res.data) });
+  }
+
+  useEffect(() => getYearActions());
+
   // calls post request for makeTransaction
   const makeTransaction = (desc, amnt, mon, day, yr, cat) => {
     axios.post(`/maketransaction/${cat}?month=${month}&year=${year}`,
-      { amount: amnt, day: day, description: desc, year: yr, month: mon, username: username })
-      .then(res =>
-        setExpenses([...expenses, {
-          amount: amnt, day: day, description: desc, year: yr, month: mon, username: username
-        }]));
+      { amount: amnt, day: day, description: desc, year: yr, month: mon, username: username });
   }
 
   // keeps track of login/logout
@@ -144,7 +148,8 @@ function App() {
           <Route path="/trackspending/">
             <Authentication handleLogin={handleLogin}>
               <TrackSpending limit={limit} balance={balance} expenses={expenses}
-                loggedIn={loggedIn} handleLogout={handleLogout} />
+                loggedIn={loggedIn} handleLogout={handleLogout}
+                yearExpenses={yearExpenses} />
             </Authentication>
           </Route>
 

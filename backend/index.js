@@ -116,9 +116,10 @@ app.get('/year/', async (req, res, next) => {
 })
 
 //getallactions/:username/?month=enter&year=enter
-//must have queries of month and year
+//must have queries of year, month is OPTIONAL
 app.get('/getallactions/:username', async (req, res, next) => {
   const username = req.params.username;
+  const isMonth = Object.keys(req.query).length > 1 ? true : false;
   const month = parseInt(req.query.month);
   const year = parseInt(req.query.year);
   const bills = await billsTable.orderBy('username').get();
@@ -136,7 +137,10 @@ app.get('/getallactions/:username', async (req, res, next) => {
   for (let docs of arr) {
     for (let doc of docs) {
       const data = doc.data();
-      if (data.month === month && data.year === year) ret.push(data);
+      if (data.year === year) {
+        if (isMonth && data.month === month) ret.push(data);
+        else if (!isMonth) ret.push(data);
+      }
     }
   }
   res.status(200).json(ret);
