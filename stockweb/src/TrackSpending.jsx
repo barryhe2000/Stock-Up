@@ -4,10 +4,9 @@ import NavBar from './NavBar';
 import RecentExpenses from './RecentExpenses';
 
 //was outside
-export default ({ limit, balance, expenses, yearExpenses }, loggedIn) => {
+export default ({ limit, balance, expenses, yearExpenses, loggedIn }) => {
     // should take in budget
     // need to calculate statistics and data to pass into graphs
-
 
     if (loggedIn) {
         return (
@@ -31,6 +30,8 @@ export default ({ limit, balance, expenses, yearExpenses }, loggedIn) => {
 
             </div>
         )
+    } else {
+        return  <div></div>
     }
 
 }

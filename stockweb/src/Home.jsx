@@ -10,6 +10,7 @@ export default ({ handleLogin, loggedIn, handleLogout }) => {
 
     // currently does not successfully redirect
     if (loggedIn) {
+
         return <Redirect to="/action" />;
 
     } else {

@@ -107,6 +107,7 @@ function App() {
   const handleLogout = () => {
     setLoggedIn(false);
     firebase.auth().signOut();
+  
   }
 
   const handleLogin = () => {
@@ -119,6 +120,11 @@ function App() {
         <Switch>
 
           <Route exact path="/">
+            <Home handleLogin={handleLogin} loggedIn={loggedIn}
+              handleLogout={handleLogout} />
+          </Route>
+
+          <Route path="/home">
             <Home handleLogin={handleLogin} loggedIn={loggedIn}
               handleLogout={handleLogout} />
           </Route>
@@ -151,43 +157,6 @@ function App() {
                 loggedIn={loggedIn} handleLogout={handleLogout}
                 yearExpenses={yearExpenses} />
             </Authentication>
-          </Route>
-
-          <Route path="/nav/">
-            <NavBar />
-          </Route>
-
-          <Route path="/newbudget/">
-            <NewBudget />
-          </Route>
-
-          <Route path="/expenseinput/">
-            <InputExpenseForm />
-          </Route>
-
-          <Route path="/stats/">
-            <BudgetStats />
-          </Route>
-
-          <Route path="/donut/">
-            <DonutChart />
-          </Route>
-
-          <Route path="/line/">
-            <LineChart />
-          </Route>
-
-          <Route path="/spendingreport/">
-            <SpendingReport />
-          </Route>
-
-          <Route path="/recentexpenses/">
-            <RecentExpenses />
-          </Route>
-
-          <Route path="/expense/">
-            <Expense month='1' day='15' year='2020'
-              amount='200' description="Rent" />
           </Route>
 
 

@@ -5,7 +5,8 @@ import NavBar from './NavBar';
 import NewBudget from './NewBudget';
 
 //loggedin was outside
-export default ({ updateLimit, limit }, loggedIn) => {
+export default ({ updateLimit, limit, loggedIn }) => {
+    
     if (loggedIn) {
         return (
             <div>
@@ -31,6 +32,8 @@ export default ({ updateLimit, limit }, loggedIn) => {
 
             </div>
         )
+    } else {
+        return <div></div>
     }
 
 

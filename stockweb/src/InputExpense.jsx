@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
-export default ({ makeTransaction }, loggedIn) => {
+export default ({ makeTransaction, loggedIn }) => {
 
     if (loggedIn) {
 
@@ -35,7 +35,8 @@ export default ({ makeTransaction }, loggedIn) => {
         )
 
     } else {
-
+        return <div></div>
+        
 
     }
 }

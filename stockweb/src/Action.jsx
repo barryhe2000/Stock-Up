@@ -48,6 +48,6 @@ export default ({ loggedIn, handleLogout, createUser }) => {
             </div>
         )
     } else {
-        return <Redirect to="/" />;
+        return <Redirect to="/Home" />;
     }
 }

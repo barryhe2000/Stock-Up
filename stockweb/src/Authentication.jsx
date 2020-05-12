@@ -47,8 +47,10 @@ export default (props) => {
     <div>
       {user && props.children}
       {!user && (
-        <FirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+        <FirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} 
+        />
       )}
+
     </div>
   );
 };
