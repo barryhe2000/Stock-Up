@@ -2,7 +2,7 @@
   "name": "stock-up",
   "version": "1.0.0",
   "scripts": {
-	  "server": "cd backend && yarn start",
+	  "server": "cd backend && node index.js",
 	  "frontend": "cd stockweb && yarn start",
 	  "dev": "concurrently \"yarn server\" \"yarn frontend\""
   },
