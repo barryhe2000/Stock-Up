@@ -611,9 +611,7 @@ h1.logo {
   left: 0;
   border: 0.4px solid rgba(113, 118, 167, 0.28);
 }
-.expenses {
-  border: 1px solid red;
-}
+
 /* track spending page */
 
 .track-spending-header {
