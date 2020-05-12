@@ -88,7 +88,7 @@ function App() {
 
   // calls get request for '/getallactions/:username'
   const getAllActions = () => {
-    axios.get(` https://mysterious-plateau-76470.herokuapp.com/${username}?month=${month}&year=${year}`).then(
+    axios.get(` https://mysterious-plateau-76470.herokuapp.com/getallactions/${username}?month=${month}&year=${year}`).then(
       res => { setExpenses(res.data) });
   }
 
