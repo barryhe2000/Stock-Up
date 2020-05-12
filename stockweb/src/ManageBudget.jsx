@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import NavBar from './NavBar';
 import NewBudget from './NewBudget';
 
-export default ({ updateLimit, budget }, loggedIn) => {
+export default ({ updateLimit, limit }, loggedIn) => {
     if (loggedIn) {
         return (
             <div>
@@ -15,7 +15,7 @@ export default ({ updateLimit, budget }, loggedIn) => {
                 <div className="manage-budget">
                     <p className="manage-budget-title">Manage Budget</p>
                     <p className="current-budget">Current Monthly Budget</p>
-                    <div className="current-budget-amount"><p>100</p></div>
+                    <div className="current-budget-amount"><p>{limit}</p></div>
                     <div className="divider"></div>
                 </div>
 

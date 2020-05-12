@@ -80,7 +80,7 @@ app.post('/updatelimit/:username', async (req, res, next) => {
   const username = req.params.username;
   const l = req.body.lim;
   await usersTable.doc(username).update({ limit: l });
-  res.status(201).send("New limit updated");
+  res.status(201).send(l);
 })
 
 //url: /whatever/myusername
@@ -97,7 +97,7 @@ app.get('/getbalance/:username', async (req, res, next) => {
 app.get('/getlimit/:username', async (req, res, next) => {
   const username = req.params.username;
   const prev = await usersTable.where('username', '==', username).get();
-  let l = null;
+  let l = 0;
   for (let doc of prev.docs) {
     l = doc.data().limit;
   }

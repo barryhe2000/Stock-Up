@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as firebase from 'firebase/app';
@@ -37,7 +37,6 @@ function App() {
   const [expenses, setExpenses] = useState([]); //stuff bought
 
   let username = null;
-
   if (loggedIn) username = firebase.auth().currentUser.email;
 
   //calls post request for '/action/:username'
@@ -45,10 +44,18 @@ function App() {
     axios.post(`/action/${username}`);
   }
 
+  // const getLimit = () => {
+  //   console.log(username);
+  //   axios.get(`/getlimit/${username}`).then(res => setLimit(res.data.limit));
+  // }
+
+  // useEffect(() => getLimit(), [limit]);
+
   //calls post request for updatelimit
   const updateLimit = (lim) => {
     axios.post(`/updatelimit/${username}`, { lim: lim }).then(
-      res => setLimit(lim));
+      res => setLimit(lim)
+    );
   }
 
   const makeTransaction = (desc, amnt, mon, day, yr, cat) => {
@@ -59,6 +66,9 @@ function App() {
           amount: amnt, day: day, description: desc, year: yr, month: mon, username: username
         }]));
   }
+
+
+
 
   const handleLogout = () => {
     firebase.auth().signOut();
@@ -95,7 +105,7 @@ function App() {
 
           <Route path="/managebudget/">
             <Authentication handleLogin={handleLogin}>
-              <ManageBudget loggedIn={loggedIn} updateLimit={updateLimit} />
+              <ManageBudget limit={limit} loggedIn={loggedIn} updateLimit={updateLimit} />
             </Authentication>
           </Route>
 
