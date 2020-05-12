@@ -80,7 +80,7 @@ app.post('/updatelimit/:username', async (req, res, next) => {
   const username = req.params.username;
   const l = req.body.lim;
   await usersTable.doc(username).update({ limit: l });
-  res.status(201).send(l);
+  res.status(201).send("Updated limit!");
 })
 
 //url: /whatever/myusername
@@ -104,8 +104,12 @@ app.get('/getlimit/:username', async (req, res, next) => {
   res.status(200).json({ limit: l });
 })
 
+//getallactions/:username/?month=enter&year=enter
+//must have queries of month and year
 app.get('/getallactions/:username', async (req, res, next) => {
   const username = req.params.username;
+  const month = req.query.month;
+  const year = req.query.year;
   const bills = await billsTable.orderBy('username').get();
   const enter = await entertainmentTable.orderBy('username').get();
   const foods = await foodTable.orderBy('username').get();

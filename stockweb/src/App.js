@@ -23,7 +23,7 @@ import axios from 'axios';
 import {
   BrowserRouter as Router,
   Switch,
-  Route, 
+  Route,
   Redirect
 } from "react-router-dom";
 
@@ -66,6 +66,13 @@ function App() {
     );
   }
 
+  // calls get request for '/getallactions/:username'
+  const getAllActions = () => {
+    axios.get(`/getallactions/${username}`).then(res => setExpenses(res.data));
+  }
+
+  useEffect(() => getAllActions());
+
   // calls post request for makeTransaction
   const makeTransaction = (desc, amnt, mon, day, yr, cat) => {
     axios.post(`/maketransaction/${cat}`,
@@ -106,23 +113,23 @@ function App() {
 
           <Route path="/inputexpense/">
             <Authentication handleLogin={handleLogin}>
-              <InputExpense makeTransaction={makeTransaction} 
-              loggedIn={loggedIn} handleLogout={handleLogout}
+              <InputExpense makeTransaction={makeTransaction}
+                loggedIn={loggedIn} handleLogout={handleLogout}
               />
             </Authentication>
           </Route>
 
           <Route path="/managebudget/">
             <Authentication handleLogin={handleLogin}>
-              <ManageBudget limit={limit} loggedIn={loggedIn} 
-              updateLimit={updateLimit} handleLogout={handleLogout}/>
+              <ManageBudget limit={limit} loggedIn={loggedIn}
+                updateLimit={updateLimit} handleLogout={handleLogout} />
             </Authentication>
           </Route>
 
           <Route path="/trackspending/">
             <Authentication handleLogin={handleLogin}>
-              <TrackSpending limit={limit} balance={balance} 
-              loggedIn={loggedIn} handleLogout={handleLogout}/>
+              <TrackSpending limit={limit} balance={balance} expenses={expenses}
+                loggedIn={loggedIn} handleLogout={handleLogout} />
             </Authentication>
           </Route>
 
