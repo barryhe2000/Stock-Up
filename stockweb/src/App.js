@@ -44,12 +44,12 @@ function App() {
     axios.post(`/action/${username}`);
   }
 
-  // const getLimit = () => {
-  //   console.log(username);
-  //   axios.get(`/getlimit/${username}`).then(res => setLimit(res.data.limit));
-  // }
+  const getLimit = () => {
+    console.log(username);
+    axios.get(`/getlimit/${username}`).then(res => setLimit(res.data.limit));
+  }
 
-  // useEffect(() => getLimit(), [limit]);
+  useEffect(() => getLimit());
 
   //calls post request for updatelimit
   const updateLimit = (lim) => {
