@@ -56,7 +56,7 @@ export default ({ makeTransaction }) => {
                             <InputGroup.Text id="inputGroupPrepend">$</InputGroup.Text>
                         </InputGroup.Prepend>
                         <Form.Control type="text" placeholder="e.g. 100.00"
-                            onChange={(e) => setAmount(parseInt(e.target.value))}
+                            onChange={(e) => setAmount(Number(e.target.value))}
                             aria-describedby="inputGroupPrepend"
                             required
                         />

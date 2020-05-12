@@ -3,7 +3,7 @@ import SpendingReport from './SpendingReport';
 import NavBar from './NavBar';
 import RecentExpenses from './RecentExpenses';
 
-export default (loggedIn, expenses) => {
+export default ({limit, balance}, loggedIn, expenses) => {
 // should take in budget
 // need to calculate statistics and data to pass into graphs
 const data = [
@@ -61,7 +61,7 @@ if (loggedIn) {
             </div>
 
             <div className="spending-report-component">
-                <SpendingReport />
+                <SpendingReport limit={limit} balance={balance} />
             </div>
 
             <div className="recent-expenses-component">

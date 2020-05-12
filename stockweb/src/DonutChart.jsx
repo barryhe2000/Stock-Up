@@ -1,13 +1,10 @@
 import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
 
-export default () => {
+export default ({limit, balance}) => {
 
-    // needs balance and budget
-    const budget = 200;
-    const balance = 80;
-    const difference = budget - balance;
-    const percentage = 40;
+    const difference = limit - balance;
+    const percentage = Math.round(balance/limit*100, 1);
     const data = {
         labels: ['Amount Spent', 'Remaining Budget'],
         datasets: [

@@ -39,11 +39,12 @@ function App() {
   let username = null;
   if (loggedIn) username = firebase.auth().currentUser.email;
 
-  //calls post request for '/action/:username'
+  // calls post request for '/action/:username'
   const createUser = () => {
     axios.post(`/action/${username}`);
   }
 
+  // calls get request for '/getlimit/:username'
   const getLimit = () => {
     console.log(username);
     axios.get(`/getlimit/${username}`).then(res => setLimit(res.data.limit));
@@ -51,13 +52,21 @@ function App() {
 
   useEffect(() => getLimit());
 
-  //calls post request for updatelimit
+  // calls get request for '/getbalance/:username'
+  const getBalance = () => {
+    axios.get(`/getbalance/${username}`).then(res => setBalance(res.data.balance));
+  }
+
+  useEffect(() => getBalance());
+
+  // calls post request for updatelimit
   const updateLimit = (lim) => {
     axios.post(`/updatelimit/${username}`, { lim: lim }).then(
       res => setLimit(lim)
     );
   }
 
+  // calls post request for makeTransaction
   const makeTransaction = (desc, amnt, mon, day, yr, cat) => {
     axios.post(`/maketransaction/${cat}`,
       { amount: amnt, day: day, description: desc, year: yr, month: mon, username: username })
@@ -69,7 +78,7 @@ function App() {
 
 
 
-
+  // keeps track of login/logout
   const handleLogout = () => {
     firebase.auth().signOut();
     setLoggedIn(false);
@@ -111,7 +120,7 @@ function App() {
 
           <Route path="/trackspending/">
             <Authentication handleLogin={handleLogin}>
-              <TrackSpending loggedIn={loggedIn} />
+              <TrackSpending limit={limit} balance={balance} loggedIn={loggedIn} />
             </Authentication>
           </Route>
 
