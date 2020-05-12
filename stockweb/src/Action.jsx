@@ -42,7 +42,7 @@ export default ({ loggedIn, handleLogout, createUser }) => {
                             Manage Budget</Button>
                     </div>
 
-                    <button onClick={handleLogout}>Sign Out</button>
+                    <div className="click" onClick={handleLogout}>Sign Out</div>
 
                 </div>
             </div>
