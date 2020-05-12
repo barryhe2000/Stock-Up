@@ -24,7 +24,6 @@ export default ({ handleLogin, loggedIn, handleLogout }) => {
 
                     <Authentication handleLogin={handleLogin} />
 
-                    <button onClick={handleLogout}>Sign Out</button>
                 </Jumbotron>
 
                 <img className="home-img" src={require('./images/gradient.png')} alt="hi"></img>
