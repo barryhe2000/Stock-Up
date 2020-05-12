@@ -104,12 +104,20 @@ app.get('/getlimit/:username', async (req, res, next) => {
   res.status(200).json({ limit: l });
 })
 
+app.get('/month/', async (req, res, next) => {
+  res.status(200).json({ month: new Date().getMonth() + 1 });
+})
+
+app.get('/year/', async (req, res, next) => {
+  res.status(200).json({ year: new Date().getFullYear() });
+})
+
 //getallactions/:username/?month=enter&year=enter
 //must have queries of month and year
 app.get('/getallactions/:username', async (req, res, next) => {
   const username = req.params.username;
-  const month = req.query.month;
-  const year = req.query.year;
+  const month = parseInt(req.query.month);
+  const year = parseInt(req.query.year);
   const bills = await billsTable.orderBy('username').get();
   const enter = await entertainmentTable.orderBy('username').get();
   const foods = await foodTable.orderBy('username').get();
@@ -124,7 +132,8 @@ app.get('/getallactions/:username', async (req, res, next) => {
   //doc.data() gives json
   for (let docs of arr) {
     for (let doc of docs) {
-      ret.push(doc.data());
+      const data = doc.data();
+      if (data.month === month && data.year === year) ret.push(data);
     }
   }
   res.status(200).json(ret);

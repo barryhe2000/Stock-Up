@@ -36,6 +36,8 @@ function App() {
   const [limit, setLimit] = useState(0);
   const [balance, setBalance] = useState(0); //number of $ user has spent
   const [expenses, setExpenses] = useState([]); //stuff bought
+  const [month, setMonth] = useState(0);
+  const [year, setYear] = useState(0);
 
   let username = null;
   if (loggedIn) username = firebase.auth().currentUser.email;
@@ -44,6 +46,19 @@ function App() {
   const createUser = () => {
     axios.post(`/action/${username}`);
   }
+
+  //update month
+  const getMon = () => {
+    axios.get(`/month/`).then(res => setMonth(res.data.month));
+  }
+
+  useEffect(() => getMon());
+
+  const getYr = () => {
+    axios.get(`/year/`).then(res => setYear(res.data.year));
+  }
+
+  useEffect(() => getYr());
 
   // calls get request for '/getlimit/:username'
   const getLimit = () => {
@@ -68,7 +83,8 @@ function App() {
 
   // calls get request for '/getallactions/:username'
   const getAllActions = () => {
-    axios.get(`/getallactions/${username}`).then(res => setExpenses(res.data));
+    axios.get(`/getallactions/${username}?month=${month}&year=${year}`).then(
+      res => { setExpenses(res.data) });
   }
 
   useEffect(() => getAllActions());
@@ -82,7 +98,6 @@ function App() {
           amount: amnt, day: day, description: desc, year: yr, month: mon, username: username
         }]));
   }
-
 
   // keeps track of login/logout
   const handleLogout = () => {
