@@ -197,6 +197,14 @@ h1.logo {
   margin: 10px 0 10px 0;
 }
 
+.navlink-div {
+  color: rgb(209, 208, 208);
+  position: relative;
+  left: 31px;
+  margin: 10px 0 10px 0;
+  cursor: pointer;
+}
+
 .single-link {
   position: relative;
   top: 50px;
@@ -210,6 +218,18 @@ h1.logo {
 .single-link:hover .navlink {
   color: #fff;
   transition: all 0.3s ease;
+}
+
+.navlink-div:hover {
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.signout {
+  position: absolute;
+  left: 27px;
+  top: 300px;
+  z-index: 3;
 }
 
 .nav-logo {
@@ -622,7 +642,9 @@ h1.logo {
   top: 700px;
 }
 
-
+.click {
+  cursor: pointer;
+}
 
 
 

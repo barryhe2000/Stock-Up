@@ -23,7 +23,8 @@ import axios from 'axios';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
+  Route, 
+  Redirect
 } from "react-router-dom";
 
 
@@ -46,7 +47,6 @@ function App() {
 
   // calls get request for '/getlimit/:username'
   const getLimit = () => {
-    console.log(username);
     axios.get(`/getlimit/${username}`).then(res => setLimit(res.data.limit));
   }
 
@@ -77,11 +77,10 @@ function App() {
   }
 
 
-
   // keeps track of login/logout
   const handleLogout = () => {
-    firebase.auth().signOut();
     setLoggedIn(false);
+    firebase.auth().signOut();
   }
 
   const handleLogin = () => {
@@ -107,20 +106,23 @@ function App() {
 
           <Route path="/inputexpense/">
             <Authentication handleLogin={handleLogin}>
-              <InputExpense makeTransaction={makeTransaction} loggedIn={loggedIn}
+              <InputExpense makeTransaction={makeTransaction} 
+              loggedIn={loggedIn} handleLogout={handleLogout}
               />
             </Authentication>
           </Route>
 
           <Route path="/managebudget/">
             <Authentication handleLogin={handleLogin}>
-              <ManageBudget limit={limit} loggedIn={loggedIn} updateLimit={updateLimit} />
+              <ManageBudget limit={limit} loggedIn={loggedIn} 
+              updateLimit={updateLimit} handleLogout={handleLogout}/>
             </Authentication>
           </Route>
 
           <Route path="/trackspending/">
             <Authentication handleLogin={handleLogin}>
-              <TrackSpending limit={limit} balance={balance} loggedIn={loggedIn} />
+              <TrackSpending limit={limit} balance={balance} 
+              loggedIn={loggedIn} handleLogout={handleLogout}/>
             </Authentication>
           </Route>
 
