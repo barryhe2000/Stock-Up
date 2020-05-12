@@ -12,6 +12,6 @@
     "firebase-admin": "^8.10.0"
   },
   "scripts": {
-	"start": "node index.js"
+    "start": "node index.js"
   }
 }
