@@ -36,8 +36,11 @@ app.post('/maketransaction/:category', async (req, res, next) => {
   const category = req.params.category;
   const info = req.body;
   const username = info.username;
+  const month = parseInt(req.query.month);
+  const year = parseInt(req.query.year);
   const prev = await usersTable.where('username', '==', username).get();
-  let b = info.amount;
+  const d = new Date();
+  let b = d.getMonth() + 1 === month && d.getFullYear() === year ? info.amount : 0;
   for (let doc of prev.docs) {
     b += doc.data().balance;
   }

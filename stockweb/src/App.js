@@ -91,7 +91,7 @@ function App() {
 
   // calls post request for makeTransaction
   const makeTransaction = (desc, amnt, mon, day, yr, cat) => {
-    axios.post(`/maketransaction/${cat}`,
+    axios.post(`/maketransaction/${cat}?month=${month}&year=${year}`,
       { amount: amnt, day: day, description: desc, year: yr, month: mon, username: username })
       .then(res =>
         setExpenses([...expenses, {

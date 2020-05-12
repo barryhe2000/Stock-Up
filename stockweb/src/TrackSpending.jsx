@@ -3,6 +3,7 @@ import SpendingReport from './SpendingReport';
 import NavBar from './NavBar';
 import RecentExpenses from './RecentExpenses';
 
+//was outside
 export default ({ limit, balance, expenses }, loggedIn) => {
     // should take in budget
     // need to calculate statistics and data to pass into graphs

@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import NavBar from './NavBar';
 import NewBudget from './NewBudget';
 
+//loggedin was outside
 export default ({ updateLimit, limit }, loggedIn) => {
     if (loggedIn) {
         return (
