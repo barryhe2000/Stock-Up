@@ -16,7 +16,7 @@ export default ({ expenses }, loggedIn) => {
                 </div>
 
                 <div className="expenses">
-                    {expenses.map(expense => <div><Expense {...expense} /></div>)}
+                    {expenses.map((expense, index) => <div><Expense key={index} {...expense} /></div>)}
                 </div>
 
             </div>
