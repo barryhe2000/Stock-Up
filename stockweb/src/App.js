@@ -49,53 +49,53 @@ function App() {
 
   // calls post request for '/action/:username'
   const createUser = () => {
-    axios.post(`https://bigstocksmydude.herokuapp.com/action/${username}`);
+    axios.post(`/action/${username}`);
   }
 
   //update month
   const getMon = () => {
-    axios.get(`https://bigstocksmydude.herokuapp.com/month/`).then(res => setMonth(res.data.month));
+    axios.get(`/month/`).then(res => setMonth(res.data.month));
   }
 
   useEffect(() => getMon());
 
   const getYr = () => {
-    axios.get(`https://bigstocksmydude.herokuapp.com/year/`).then(res => setYear(res.data.year));
+    axios.get(`/year/`).then(res => setYear(res.data.year));
   }
 
   useEffect(() => getYr());
 
   // calls get request for '/getlimit/:username'
   const getLimit = () => {
-    axios.get(`https://bigstocksmydude.herokuapp.com/getlimit/${username}`).then(res => setLimit(res.data.limit));
+    axios.get(`/getlimit/${username}`).then(res => setLimit(res.data.limit));
   }
 
   useEffect(() => getLimit());
 
   // calls get request for '/getbalance/:username'
   const getBalance = () => {
-    axios.get(`https://bigstocksmydude.herokuapp.com/getbalance/${username}`).then(res => setBalance(res.data.balance));
+    axios.get(`/getbalance/${username}`).then(res => setBalance(res.data.balance));
   }
 
   useEffect(() => getBalance());
 
   // calls post request for updatelimit
   const updateLimit = (lim) => {
-    axios.post(`https://bigstocksmydude.herokuapp.com/updatelimit/${username}`, { lim: lim }).then(
+    axios.post(`/updatelimit/${username}`, { lim: lim }).then(
       res => setLimit(lim)
     );
   }
 
   // calls get request for '/getallactions/:username'
   const getAllActions = () => {
-    axios.get(`https://bigstocksmydude.herokuapp.com/getallactions/${username}?month=${month}&year=${year}`).then(
+    axios.get(`/getallactions/${username}?month=${month}&year=${year}`).then(
       res => { setExpenses(res.data) });
   }
 
   useEffect(() => getAllActions());
 
   const getYearActions = () => {
-    axios.get(`https://bigstocksmydude.herokuapp.com/getallactions/${username}?year=${year}`).then(
+    axios.get(`/getallactions/${username}?year=${year}`).then(
       res => { setYearExpenses(res.data) });
   }
 
@@ -103,7 +103,7 @@ function App() {
 
   // calls post request for makeTransaction
   const makeTransaction = (desc, amnt, mon, day, yr, cat) => {
-    axios.post(`https://bigstocksmydude.herokuapp.com/maketransaction/${cat}?month=${month}&year=${year}`,
+    axios.post(`/maketransaction/${cat}?month=${month}&year=${year}`,
       { amount: amnt, day: day, description: desc, year: yr, month: mon, username: username });
   }
 
