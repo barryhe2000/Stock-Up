@@ -2,6 +2,7 @@ const admin = require("firebase-admin");
 const serviceAccount = require("./service-account.json");
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -201,6 +202,14 @@ app.get('/gettransportactions/:username', async (req, res, next) => {
   res.status(200).json(getActionsHelper(username, arr, transport).map(
     (item) => ({ ...item.data() })));
 })
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+
+app.get('*', (request, response) => {
+  response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 //process.env.PORT is heroku port
 app.listen(process.env.PORT, () => console.log(`Listening on port ${port}!`));
