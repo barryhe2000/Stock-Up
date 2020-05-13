@@ -16,7 +16,7 @@ export default ({ makeTransaction, loggedIn }) => {
                 </div>
 
                 <div className="input-expense-header">
-                    <p className="input-expense-title">Input Expense</p>
+                    <p className="input-expense-title">Input Expense TESTING</p>
                 </div>
 
                 <div className="input-expense-component">
@@ -36,7 +36,7 @@ export default ({ makeTransaction, loggedIn }) => {
 
     } else {
         return <div></div>
-        
+
 
     }
 }
