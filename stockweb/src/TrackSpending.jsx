@@ -31,7 +31,7 @@ export default ({ limit, balance, expenses, yearExpenses, loggedIn }) => {
             </div>
         )
     } else {
-        return  <div></div>
+        return <div>Hello there</div>
     }
 
 }
