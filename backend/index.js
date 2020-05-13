@@ -212,4 +212,4 @@ app.get('*', (request, response) => {
 });
 
 //process.env.PORT is heroku port
-app.listen(process.env.PORT, () => console.log(`Listening on port ${port}!`));
+app.listen(port || process.env.PORT, () => console.log(`Listening on port ${port}!`));
