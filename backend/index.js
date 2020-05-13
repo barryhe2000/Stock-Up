@@ -2,6 +2,7 @@ const admin = require("firebase-admin");
 const serviceAccount = require("./service-account.json");
 const express = require('express');
 const bodyParser = require('body-parser');
+//stack overflow
 const path = require('path');
 
 admin.initializeApp({
@@ -212,4 +213,4 @@ app.get('*', (request, response) => {
 });
 
 //process.env.PORT is heroku port
-app.listen(port || process.env.PORT, () => console.log(`Listening on port ${port}!`));
+app.listen(process.env.PORT, () => console.log(`Listening on port ${port}!`));
