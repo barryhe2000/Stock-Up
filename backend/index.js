@@ -3,7 +3,7 @@ const serviceAccount = require("./service-account.json");
 const express = require('express');
 const bodyParser = require('body-parser');
 //stack overflow
-const path = require('path');
+// const path = require('path');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -204,13 +204,13 @@ app.get('/gettransportactions/:username', async (req, res, next) => {
     (item) => ({ ...item.data() })));
 })
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/build'));
+// }
 
-app.get('*', (request, response) => {
-  response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
+// app.get('*', (request, response) => {
+//   response.sendFile(path.join(__dirname, 'index.js'));
+// });
 
 //process.env.PORT is heroku port
 app.listen(process.env.PORT, () => console.log(`Listening on port ${port}!`));
