@@ -202,4 +202,4 @@ app.get('/gettransportactions/:username', async (req, res, next) => {
     (item) => ({ ...item.data() })));
 })
 
-app.listen(process.env.PORT || port, () => console.log(`Listening on port ${port}!`));
+app.listen(process.env.PORT, () => console.log(`Listening on port ${port}!`));
